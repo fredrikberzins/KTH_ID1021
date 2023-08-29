@@ -5,7 +5,6 @@ public class Stack {
         NUM,
         EMPTY
     }
-    
     private StackType type;
     private int num = 0;
     
@@ -13,7 +12,7 @@ public class Stack {
         stack[pos].Num(args);
     }
     
-    static int Pop(int pos) {
+    static int Pop() {
         int value = stack[pos].num;
         stack[pos].type = StackType.EMPTY;
         return value;
