@@ -1,26 +1,22 @@
-package HP35;
-
-import HP35.Item.ItemType;
-
 public class Calculator {
     Item[] expression;
-    int ip;
+    int instructionPointer;
     Stack stack;
+
     public Calculator(Item[] expression) {
         this.expression = expression;
-        this.ip = 0;
+        this.instructionPointer = 0;
         this.stack = new Stack();
     }
-
     public void step() {
-        Item nxt = expression[ip++];
-        switch(nxt.type()) {
+        Item next = expression[instructionPointer++];
+        switch(next.type()) {
             case ADD : {
                 int y = stack.pop();
                 int x = stack.pop();
                 stack.push(x + y);
                 break;
-            }
+            } 
             case SUB : {
                 int y = stack.pop();
                 int x = stack.pop();
@@ -40,37 +36,29 @@ public class Calculator {
                 break;
             }
             case VALUE : {
-                stack.push(nxt.num);
+                stack.push(next.value());
                 break;
             }
         }
     }
-
     public int run() {
-        while ( ip < expression.length ) {
+        while ( instructionPointer < expression.length ) {
             step();
         }
-        return stack.Pop();
+        return stack.pop();
     }
-}
-
-public static void main() {
-    // 10 + 2 * 5
-    // 10 2 5 * + in reversed Polish notation
-    Item[] expression = {
+    public static void main(String[] args) {
+        // 10 + 2 * 5
+        // 10 2 5 * + in reversed Polish notation
+        Item[] expression = {
         Item.Value(10),
         Item.Value(2),
         Item.Value(5),
         Item.Mul(),
         Item.Add()
-    };
-    int StackMaxSize = 0;
-    for(int i = 0; i < expression.length; i++){
-        if(expression.type == ItemType.VALUE){
-          StackMaxSize++;  
         };
+        Calculator calc = new Calculator(expression);
+        int res = calc.run();
+        System.out.println(" Calculator: res = " + res);
     }
-    Calculator calc = new Calculator(expression);
-    int result = calc.run();
-    System.out.println(" Calculator: res = " + result);
-}
+}  
