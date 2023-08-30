@@ -6,7 +6,7 @@ public class Calculator {
     public Calculator(Item[] expression) {
         this.expression = expression;
         this.instructionPointer = 0;
-        this.stack = new Stack();
+        this.stack = new Stack(expression.length);
     }
     public void step() {
         Item next = expression[instructionPointer++];
