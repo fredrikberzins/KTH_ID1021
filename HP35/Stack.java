@@ -19,6 +19,6 @@ public class Stack {
 		int returnvalue = stackarray[top];
 		stackarray[top] = 0;
 		top--;
-		return returnvalue;
+        return returnvalue;
 	}
 }

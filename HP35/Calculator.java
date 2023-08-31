@@ -6,7 +6,7 @@ public class Calculator {
     public Calculator(Item[] expression) {
         this.expression = expression;
         this.instructionPointer = 0;
-        this.stack = new Stack(Math.round(expression.length / 2) + 1);
+        this.stack = new Stack((int)Math.round(expression.length / 2) + 1);
     }
 
     public void step() {
@@ -44,21 +44,47 @@ public class Calculator {
     }
 
     public int run() {
-        while ( instructionPointer < expression.length ) {
+        while (instructionPointer < expression.length) {
             step();
-        }
+		}
         return stack.pop();
     }
     
     public static void main(String[] args) {
-        // 10 + 2 * 5
-        // 10 2 5 * + in reversed Polish notation
+        // 1 + 2 * (3 + 4 * (5 + 6 * (7 + 8 * (9 + 10 * (11 + 12 * (13 + 14 * (15 + 16) ) ) ) ) ) )
+        // 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 + * + * + * + * + * + * + * + in reversed Polish notation
         Item[] expression = {
-        Item.Value(10),
-        Item.Value(2),
-        Item.Value(5),
-        Item.Mul(),
-        Item.Add()
+            Item.Value(1),
+            Item.Value(2),
+            Item.Value(3),
+            Item.Value(4),
+            Item.Value(5),
+            Item.Value(6),
+            Item.Value(7),
+            Item.Value(8),
+            Item.Value(9),
+            Item.Value(10),
+            Item.Value(11),
+            Item.Value(12),
+            Item.Value(13),
+            Item.Value(14),
+            Item.Value(15),
+            Item.Value(16),
+            Item.Add(),
+            Item.Mul(),
+            Item.Add(),
+            Item.Mul(),
+            Item.Add(),
+            Item.Mul(),
+            Item.Add(),
+            Item.Mul(),
+            Item.Add(),
+            Item.Mul(),
+            Item.Add(),
+            Item.Mul(),
+            Item.Add(),
+            Item.Mul(),
+            Item.Add(),
         };
         Calculator calc = new Calculator(expression);
         int res = calc.run();
