@@ -9,37 +9,42 @@ public class Item {
         DIV,
         VALUE
     }
-    public static Item Add(){
+
+    public static Item Add() {
         Item NewItem = new Item();
         NewItem.type = ItemType.ADD;
         return NewItem;
     }
-    public static Item Sub(){
+
+    public static Item Sub() {
         Item NewItem = new Item();
         NewItem.type = ItemType.SUB;
         return NewItem;
     }
-    public  static Item Mul(){
+
+    public static Item Mul() {
         Item NewItem = new Item();
         NewItem.type = ItemType.MUL;
         return NewItem;
     }
-    public  static Item Div(){
+
+    public static Item Div() {
         Item NewItem = new Item();
         NewItem.type = ItemType.DIV;
         return NewItem;
     }
-    public  static Item Value(int args){
+
+    public static Item Value(int args) {
         Item NewItem = new Item();
         NewItem.type = ItemType.VALUE;
         NewItem.value = args;
         return NewItem;
     }
 
-    public int value(){
-        return value;
+    public int value() {
+        return this.value;
     }
-    public ItemType type(){
-        return type;
+    public ItemType type() {
+        return this.type;
     }
 } 

@@ -6,8 +6,9 @@ public class Calculator {
     public Calculator(Item[] expression) {
         this.expression = expression;
         this.instructionPointer = 0;
-        this.stack = new Stack(expression.length);
+        this.stack = new Stack(Math.round(expression.length / 2) + 1);
     }
+
     public void step() {
         Item next = expression[instructionPointer++];
         switch(next.type()) {
@@ -41,12 +42,14 @@ public class Calculator {
             }
         }
     }
+
     public int run() {
         while ( instructionPointer < expression.length ) {
             step();
         }
         return stack.pop();
     }
+    
     public static void main(String[] args) {
         // 10 + 2 * 5
         // 10 2 5 * + in reversed Polish notation

@@ -4,7 +4,6 @@ public class Stack {
 	private int[] stackarray;
     private int top;
 
-
     // create the sequence
     Stack(int args) {
 		stackarray = new int[args]; // stack array
