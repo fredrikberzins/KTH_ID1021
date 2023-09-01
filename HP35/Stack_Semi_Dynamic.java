@@ -1,12 +1,12 @@
-public class Stack {
+public class Stack_Semi_Dynamic {
 
 	// the root StackItem in the StackItem-sequence
 	public int[] stackarray;
     public int top;
 
     // create the sequence
-    Stack(int args) {
-		stackarray = new int[args]; // stack array
+    Stack_Semi_Dynamic() {
+		stackarray = new int[1]; // stack array
 		top = -1; //-1 to get first value at 0
 	}
 
@@ -20,14 +20,14 @@ public class Stack {
 
 	public void push(int value) {
 		if (stackarray.length - 1 <= top) {
-			resize((int)Math.round(stackarray.length * 1.5));
+			resize(stackarray.length * 2);
 		}
 		top++;
 		stackarray[top] = value;
 	}
 
 	public int pop() {
-		if (top < stackarray.length/2) {
+		if (top < stackarray.length/3) {
 			resize((int)Math.round(stackarray.length / 2));
 		}
 		int returnvalue = stackarray[top];

@@ -1,9 +1,9 @@
-public class Stack {
+public class Stack_Static {
 
 	private int[] stackarray;
     private int top;
 
-    Stack(int args) {
+    Stack_Static(int args) {
 		stackarray = new int[args]; // stack array
 		top = -1; //-1 to get first value at 0
 	}
@@ -15,7 +15,6 @@ public class Stack {
 
 	public int pop() {
 		int returnvalue = stackarray[top];
-		stackarray[top] = 0;
 		top--;
         return returnvalue;
 	}

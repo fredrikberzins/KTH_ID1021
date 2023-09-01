@@ -1,14 +1,16 @@
 public class Calculator {
     Item[] expression;
     int instructionPointer;
-    Stack stack;
+    //Stack_Dynamic stack;
+    Stack_Semi_Dynamic stack;
+    //Stack_Static stack;
 
     public Calculator(Item[] expression) {
         this.expression = expression;
         this.instructionPointer = 0;
-        //this.stack = new Stack(); // Dynamic
-        //this.stack = new Stack((int)Math.round(expression.length / 3)); // semi Dynamic
-        //this.stack = new Stack((int)Math.round(expression.length / 2) + 1); // Static
+        //this.stack = new Stack_Dynamic(); // Dynamic
+        this.stack = new Stack_Semi_Dynamic(); // semi Dynamic
+        //this.stack = new Stack_Static((int)Math.round(expression.length / 2) + 1); // Static
     }
 
     public void step() {

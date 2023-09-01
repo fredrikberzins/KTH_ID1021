@@ -1,4 +1,4 @@
-public class Stack {
+public class Stack_Dynamic {
 
     private class StackItem {
         private StackItem above;
