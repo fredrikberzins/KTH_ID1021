@@ -6,7 +6,9 @@ public class Calculator {
     public Calculator(Item[] expression) {
         this.expression = expression;
         this.instructionPointer = 0;
-        this.stack = new Stack((int)Math.round(expression.length / 2) + 1);
+        //this.stack = new Stack(); // Dynamic
+        //this.stack = new Stack((int)Math.round(expression.length / 3)); // semi Dynamic
+        //this.stack = new Stack((int)Math.round(expression.length / 2) + 1); // Static
     }
 
     public void step() {
@@ -84,7 +86,7 @@ public class Calculator {
             Item.Mul(),
             Item.Add(),
             Item.Mul(),
-            Item.Add(),
+            Item.Add()
         };
         Calculator calc = new Calculator(expression);
         int res = calc.run();
