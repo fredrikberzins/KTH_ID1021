@@ -4,15 +4,14 @@ public class Inital {
     public static int[] sorted(int n) {
         Random rnd = new Random();
         int[] array = new int[n];
-        int nxt = rnd.nextInt(10);
+        int next = rnd.nextInt(10);
 
         for (int i = 0; i < n ; i++) {
-            nxt += rnd.nextInt(10) + 1;
-            array[i] = nxt;
+            next += rnd.nextInt(10) + 1;
+            array[i] = next;
         }
         return array;
     }
-
     public static int[] keys(int loop, int n) {
 		Random rnd = new Random();	
 		int[] indx = new int[loop];

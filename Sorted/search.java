@@ -1,5 +1,25 @@
-public class Binary {
-    public static boolean search(int[] array, int key) {
+public class search {
+    public static boolean linear(int[] array, int key) {
+        for (int index = 0; index < array.length ; index++) {
+            if (array[index] == key) {
+                return true;
+            }
+        }   
+        return false;
+    }
+    public static boolean betterLinear(int[] array, int key) {
+        for (int index = 0; index < array.length ; index++) {
+            if (array[index] < key) {
+                continue;
+            }
+            else if (array[index] == key) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    } 
+    public static boolean binary(int[] array, int key) {
         int first = 0;
         int last = array.length-1;
         while (true) {
