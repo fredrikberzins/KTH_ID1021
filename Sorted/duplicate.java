@@ -12,11 +12,11 @@ public class duplicate {
     }
     public static boolean betterLinear(int[] array1, int[] array2) {
         for(int i = 0, n = 0; i < array1.length || n < array2.length;) {
-            if (array1[i] < array2[n]) {
+            if (array1[i] > array2[n]) {
                 n++;
                 continue;
             }
-            else if (array1[i] > array2[n]) {
+            else if (array1[i] < array2[n]) {
                 i++;
                 continue;
             }
