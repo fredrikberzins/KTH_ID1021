@@ -20,4 +20,11 @@ public class Inital {
 		}	
 		return indx;
     }
+    public static int[][] array2d(int loop, int n) {
+        int[][] temp = new int[loop][n];
+		for (int i = 0; i < loop; i++) {
+            temp[i] = sorted(n);
+        }
+        return temp;
+    }
 }
