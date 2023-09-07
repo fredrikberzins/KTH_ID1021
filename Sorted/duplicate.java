@@ -11,7 +11,7 @@ public class duplicate {
         return false;
     }
     public static boolean betterLinear(int[] array1, int[] array2) {
-        for(int i = 0, n = 0; i < array1.length || n < array2.length;) {
+        for(int i = 0, n = 0; i < array1.length && n < array2.length;) {
             if (array1[i] > array2[n]) {
                 n++;
                 continue;
@@ -21,10 +21,11 @@ public class duplicate {
                 continue;
             }
             else if (array1[i] == array2[n]) {
+                //System.out.println("yay");
                 return true;
             }
-            
         }
+        //System.out.println("no");
         return false;
     }
     public static boolean binary(int[] array1, int[] array2) {

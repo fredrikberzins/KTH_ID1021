@@ -4,10 +4,10 @@ public class Inital {
     public static int[] sorted(int n) {
         Random rnd = new Random();
         int[] array = new int[n];
-        int next = rnd.nextInt(10);
+        int next = rnd.nextInt(n/2);
 
         for (int i = 0; i < n ; i++) {
-            next += rnd.nextInt(10) + 1;
+            next += rnd.nextInt(n/2) + 1;
             array[i] = next;
         }
         return array;
