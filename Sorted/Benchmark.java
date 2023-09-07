@@ -1,34 +1,34 @@
 public class Benchmark {
-    private static void linearSearch(int[] array, int[] indx) {
-		for (int i = 0; i < indx.length ; i++) {
-			search.linear(array, indx[i]);
+    private static void linearSearch(int[] array, int[] keys) {
+		for (int i = 0; i < keys.length ; i++) {
+			search.linear(array, keys[i]);
 		}
     }
-    private static void betterLinearSerch(int[] array, int[] indx) {
-		for (int i = 0; i < indx.length ; i++) {
-			search.betterLinear(array, i);
+    private static void betterLinearSerch(int[] array, int[] keys) {
+		for (int i = 0; i < keys.length ; i++) {
+			search.betterLinear(array, keys[i]);
 		}
     }
-    private static void binarySearch(int[] array, int[] indx) {
-		for (int i = 0; i < indx.length ; i++) {
-			search.binary(array, indx[i]);
+    private static void binarySearch(int[] array, int[] keys) {
+		for (int i = 0; i < keys.length ; i++) {
+			search.binary(array, keys[i]);
 		}
     }
 
-	private static void linearDuplicate(int[] array1, int[] array2, int loops) {
-		for (int i = 0; i < loops ; i++) {
-			duplicate.linear(array1, array2);
+	private static void linearDuplicate(int[] array1, int[][] array2) {
+		for (int i = 0; i < array2.length ; i++) {
+			duplicate.linear(array1, array2[i]);
 		}
     }
-    private static void betterLinearDuplicate(int[] array1, int[] array2, int loops) {
-		for (int i = 0; i < loops ; i++) {
-			duplicate.binary(array1, array2);
+    private static void betterLinearDuplicate(int[] array1, int[][] array2) {
+		for (int i = 0; i < array2.length ; i++) {
+			duplicate.betterLinear(array1, array2[i]);
 		}
     }
 	
-    private static void binaryDuplicate(int[] array1, int[] array2, int loops) {
-		for (int i = 0; i < loops ; i++) {
-			duplicate.binary(array1, array2);
+    private static void binaryDuplicate(int[] array1, int[][] array2) {
+		for (int i = 0; i < array2.length ; i++) {
+			duplicate.binary(array1, array2[i]);
 		}
     }
     
@@ -41,6 +41,7 @@ public class Benchmark {
 			
 			int[] sortedArray = Inital.sorted(n);
 			int[] indx = Inital.keys(loop, n);
+			int[][] sortedArray2D = Inital.array2d(loop, n);
 			System.out.printf("%8d", n);
 			int k = 1000;
 
@@ -80,9 +81,8 @@ public class Benchmark {
 			min = Double.POSITIVE_INFINITY;
 			Double median = 0.0;
 			for (int i = 0; i < k; i++) {
-				int[] sortedArray2  = Inital.sorted(n);
 				long t0 = System.nanoTime();
-				linearDuplicate(sortedArray, sortedArray2, loop);
+				linearDuplicate(sortedArray, sortedArray2D);
 				long t1 = System.nanoTime();
 				double t = (t1 - t0);
 				if(t < min) min = t;
@@ -93,9 +93,8 @@ public class Benchmark {
 			min = Double.POSITIVE_INFINITY;
 			median = 0.0;
 			for (int i = 0; i < k; i++) {
-				int[] sortedArray2  = Inital.sorted(n);
 				long t0 = System.nanoTime();
-				betterLinearDuplicate(sortedArray, sortedArray2, loop);
+				betterLinearDuplicate(sortedArray, sortedArray2D);
 				long t1 = System.nanoTime();
 				double t = (t1 - t0);
 				if(t < min) min = t;
@@ -106,9 +105,8 @@ public class Benchmark {
 			min = Double.POSITIVE_INFINITY;
 			median = 0.0;
 			for (int i = 0; i < k; i++) {
-				int[] sortedArray2 = Inital.sorted(n);
 				long t0 = System.nanoTime();
-				binaryDuplicate(sortedArray, sortedArray2, loop);
+				binaryDuplicate(sortedArray, sortedArray2D);
 				long t1 = System.nanoTime();
 				double t = (t1 - t0);
 				if(t < min) min = t;
