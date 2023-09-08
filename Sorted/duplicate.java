@@ -21,11 +21,9 @@ public class duplicate {
                 continue;
             }
             else if (array1[i] == array2[n]) {
-                //System.out.println("yay");
                 return true;
             }
         }
-        //System.out.println("no");
         return false;
     }
     public static boolean binary(int[] array1, int[] array2) {
