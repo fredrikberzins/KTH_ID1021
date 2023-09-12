@@ -54,13 +54,13 @@ public class sort {
             for ( int k = lo; k <= hi; k++) {
                 // if i is greater than mid then
                 // move the j'th item to the array, update j
-                if (i > mid) {
+                if (mid < i) {
                     array[k] = aux[j];
                     j++;
                 }
                 // else if j is greate than hi then
                 // move the i'th item to the array, update i
-                else if (j > hi) {
+                else if (hi < j) {
                     array[k] = aux[i];
                     i++;
                 }
