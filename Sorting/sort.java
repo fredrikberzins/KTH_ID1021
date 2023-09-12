@@ -1,55 +1,40 @@
 public class sort {
-    public static int[] selection(int[] array) {
+    public static void selection(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {
-            int curr = array[i];
+            int curr = i;
             for (int n = i+1; n < array.length ; n++) {
-                if (array[n] < curr) {
-                    curr = array[n];
-                }
-                if (array[i] != curr) {
-                    array[i] = array[n];
-                    array[n] = curr;
+                if (array[n] < array[curr]) {
+                    curr = n;
                 }
             }
+            Inital.swap(array, i, curr);
         }
-        return array;
+        return;
     }
-    public static int[] insert(int[] array) {
+    public static void insert(int[] array) {
         for (int i = 0; i < array.length; i++) {
-            for (int j = i; j > 0 && array[i] < array[j] ; j--) {
-                int temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
+            for (int n = i; 0 < n; n--) {
+                if (array[n] < array[n - 1] ) {
+                    Inital.swap(array, n, n - 1);
+                }
             }
         }
-        return array;
+        return;
     }
-    public static int[] merge(int[] array) {
+    public static void merge(int[] array) {
         if (array.length == 0)
-            return array;
+            return;
         int[] aux = new int[array.length];
         sort_merge(array, aux, 0, array.length -1);
-        return array;
+        return;
     }
     private static void sort_merge(int[] array, int[] aux, int lo, int hi) {
         if (lo != hi) {
             int mid = (lo + hi)/2;
             // sort the items from lo to mid
-            for (int i = lo; i < mid; i++) {
-                for (int j = i; j >= 0 && array[i] < array[j] ; j--) {
-                    int temp = array[i];
-                    array[i] = array[j];
-                    array[j] = temp;
-                }
-            }
+            sort_merge(array, aux, lo, mid);
             // sort the items from mid+1 to hi
-            for (int i = mid + 1; i < hi; i++) {
-                for (int j = i; j >= 0 && array[i] < array[j] ; j--) {
-                    int temp = array[i];
-                    array[i] = array[j];
-                    array[j] = temp;
-                }
-            }
+            sort_merge(array, aux, mid + 1, hi);
             // merge the two sections using the additional array
             merge_merge(array, aux, lo, mid, hi);
         }

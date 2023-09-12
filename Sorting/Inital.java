@@ -4,9 +4,8 @@ public class Inital {
     public static int[] unsorted(int n) {
 		Random rnd = new Random();	
 		int[] array = new int[n];
-        int modifyer = rnd.nextInt(3) + 1;
 		for (int i = 0; i < n ; i++) {
-			array[i] = rnd.nextInt(n) * modifyer;
+			array[i] = rnd.nextInt(n*10);
 		}	
 		return array;
     }
@@ -17,4 +16,11 @@ public class Inital {
         }
         return array;
     }
+
+    public static void swap(int[] array, int i, int n) {
+        int temp = array[i];
+        array[i] = array[n];
+        array[n] = temp;
+    }
+
 }
