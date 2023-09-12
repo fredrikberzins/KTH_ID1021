@@ -7,7 +7,6 @@ public class Benchmark {
 			System.gc();
 			int loop = 1000;
 			int[][] array2d = Inital.array2d(loop, n);
-			//Inital.print2dArr(array2d);
 			System.out.printf("%6d", n);
 			int k = 1000;
 
