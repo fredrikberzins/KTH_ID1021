@@ -5,10 +5,10 @@ public class Benchmark {
 		System.out.printf("#%5s%15s%15s%15s\n", "n", "selection", "insert", "merge");
 		for ( int n : sizes) {
 			System.gc();
-			int loop = 1000;
+			int loop = 100;
 			int[][] array2d = Inital.array2d(loop, n);
 			System.out.printf("%6d", n);
-			int k = 1000;
+			int k = 100;
 
 			double min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
@@ -20,7 +20,7 @@ public class Benchmark {
 				double t = (t1 - t0);
 				if(t < min) min = t;
 			}
-			System.out.printf("%10.0f(%3.1f)" , (min/loop),((min/(loop*k))/(n)));
+			System.out.printf("%10.0f(%3.1f)" , (min/loop),((min/(loop*k))/(n*n))*1000);
 
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
@@ -32,7 +32,7 @@ public class Benchmark {
 				double t = (t1 - t0);
 				if(t < min) min = t;
 			}
-			System.out.printf("%10.0f(%3.1f)" , (min/loop),((min/(loop*k))/(n)));
+			System.out.printf("%10.0f(%3.1f)" , (min/loop),((min/(loop*k))/(n))*10000);
 
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
@@ -44,7 +44,7 @@ public class Benchmark {
 				double t = (t1 - t0);
 				if(t < min) min = t;
 			}
-			System.out.printf("%10.0f(%3.1f)" , (min/loop),((min/(loop*k))/(n)));
+			System.out.printf("%10.0f(%3.1f)\n" , (min/loop),((min/(loop*k))/(n*Math.log(n)))*1000);
 		}
     }
 }

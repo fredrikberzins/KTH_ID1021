@@ -3,7 +3,7 @@ public class sort {
         for (int i = 0; i < array.length - 1; i++) {
             int curr = array[i];
             for (int n = i+1; n < array.length ; n++) {
-                if (array[n] < array[curr]) {
+                if (array[n] < curr) {
                     curr = array[n];
                 }
                 if (array[i] != curr) {
@@ -15,11 +15,11 @@ public class sort {
         return array;
     }
     public static int[] insert(int[] array) {
-        for (int i = 0; i < array.length-1; i++) {
-            int curr = array[i];
-            for (int j = i; j >= 0 && curr < array[j] ; j--) {
-                array[j] = array[i];
-                array[i] = curr;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = i; j > 0 && array[i] < array[j] ; j--) {
+                int temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
             }
         }
         return array;
@@ -35,9 +35,21 @@ public class sort {
         if (lo != hi) {
             int mid = (lo + hi)/2;
             // sort the items from lo to mid
-            :
+            for (int i = lo; i < mid; i++) {
+                for (int j = i; j >= 0 && array[i] < array[j] ; j--) {
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
             // sort the items from mid+1 to hi
-            :
+            for (int i = mid + 1; i < hi; i++) {
+                for (int j = i; j >= 0 && array[i] < array[j] ; j--) {
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
             // merge the two sections using the additional array
             merge_merge(array, aux, lo, mid, hi);
         }
@@ -51,14 +63,14 @@ public class sort {
         int i = lo; // the index in the first part
         int j = mid+1; // the index in the second part
         // for all indices from lo to hi
-            for ( int k = lo; k <= hi; k++) {
+            for ( int k = lo; k < hi; k++) {
                 // if i is greater than mid then
                 // move the j'th item to the array, update j
                 if (mid < i) {
                     array[k] = aux[j];
                     j++;
                 }
-                // else if j is greate than hi then
+                // else if j is greater than hi then
                 // move the i'th item to the array, update i
                 else if (hi < j) {
                     array[k] = aux[i];
