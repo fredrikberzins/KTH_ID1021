@@ -17,6 +17,14 @@ public class Inital {
         return array;
     }
 
+    public static int[] copyArr(int[] Arr) {
+        int[] tempArr = new int[Arr.length];
+        for (int i = 0; i < Arr.length; i++) {
+            tempArr[i] = Arr[i];
+        }
+        return tempArr;
+    }
+
     public static int[][] copyArr2d(int[][] Arr2d) {
         int[][] tempArr = new int[Arr2d.length][Arr2d[0].length];
         for (int i = 0; i < Arr2d.length; i++) {

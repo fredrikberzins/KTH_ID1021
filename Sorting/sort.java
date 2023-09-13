@@ -67,24 +67,22 @@ public class sort {
     }
 
     public static void lowCopyMerge(int[] array) {
-        if (array.length == 0)
+        if (array.length == 0){
             return;
-        int[] aux = new int[array.length];
-        for (int i = 0; i < array.length; i++) {
-            aux[i] = array[i];
         }
-        array = sort_lowCopyMerge(aux, array, 0, array.length -1);
+        int[] aux = Inital.copyArr(array);
+        sort_lowCopyMerge(aux, array, 0, array.length -1);
         return;
     }
 
     private static int[] sort_lowCopyMerge(int[] array, int[] aux, int lo, int hi) {
         if (lo != hi) {
             int mid = (lo + hi)/2;
-            sort_merge(array, aux, lo, mid);
-            sort_merge(array, aux, mid + 1, hi);
+            aux = sort_lowCopyMerge(array, aux, lo, mid);
+            aux = sort_lowCopyMerge(array, aux, mid + 1, hi);
             merge_lowCopyMerge(array, aux, lo, mid, hi);
         }
-        return aux;
+        return array;
     }
     private static void merge_lowCopyMerge(int[] array, int[] aux, int lo, int mid, int hi) {
         for (int i = lo; i <= hi; i++) {
