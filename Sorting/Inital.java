@@ -17,10 +17,37 @@ public class Inital {
         return array;
     }
 
+    public static int[][] copyArr2d(int[][] Arr2d) {
+        int[][] tempArr = new int[Arr2d.length][Arr2d[0].length];
+        for (int i = 0; i < Arr2d.length; i++) {
+            for (int n = 0; n < Arr2d[i].length; n++) {
+                tempArr[i][n] = Arr2d[i][n];
+            }
+        }
+        return tempArr;
+    }
+
     public static void swap(int[] array, int i, int n) {
         int temp = array[i];
         array[i] = array[n];
         array[n] = temp;
     }
-
+    
+    public static void printArr(int[] Arr) {    
+        System.out.println("");
+        for (int i = 0; i < Arr.length; i++) {
+            System.out.print(Arr[i] + ", ");
+        }
+        System.out.println();
+    }
+    public static void printArr2d(int[][] Arr2d) {    
+        System.out.println("");
+        for (int i = 0; i < Arr2d.length; i++) {
+            System.out.print("Next: ");
+            for (int n = 0; n < Arr2d[i].length; n++) {
+                System.out.print(Arr2d[i][n] + ", ");
+            }
+        }
+        System.out.println();
+    }
 }

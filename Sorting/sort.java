@@ -15,19 +15,24 @@ public class sort {
         for (int i = 0; i < array.length; i++) {
             for (int n = i; 0 < n; n--) {
                 if (array[n] < array[n - 1] ) {
-                    Inital.swap(array, n, n - 1);
+                    Inital.swap(array, n - 1 , n);
+                }
+                else{
+                    break;
                 }
             }
         }
         return;
     }
     public static void merge(int[] array) {
-        if (array.length == 0)
+        if (array.length == 0){
             return;
+        }
         int[] aux = new int[array.length];
         sort_merge(array, aux, 0, array.length -1);
         return;
     }
+
     private static void sort_merge(int[] array, int[] aux, int lo, int hi) {
         if (lo != hi) {
             int mid = (lo + hi)/2;
@@ -37,27 +42,71 @@ public class sort {
         }
     }
     private static void merge_merge(int[] array, int[] aux, int lo, int mid, int hi) {
-        for (int i = lo; i < hi; i++) {
+        for (int i = lo; i <= hi; i++) {
             aux[i] = array[i];
         }
         int i = lo;
         int j = mid+1;
-        for ( int k = lo; k < hi; k++) {
-            if (mid < i) {
+        for ( int k = lo; k <= hi; k++) {
+            if (j <= hi && i <= mid) {
+                if (aux[i] <= aux[j]) {
+                    array[k] = aux[i];
+                    i++;
+                } else {
+                    array[k] = aux[j];
+                    j++;
+                }
+            } else if (j <= hi) {
                 array[k] = aux[j];
                 j++;
-            }
-            else if (hi < j) {
+            } else {
                 array[k] = aux[i];
                 i++;
             }
-            else if (aux[i] < aux[j]) {
-                array[k] = aux[i];
-                i++;
-            }
-            else {
+        }
+    }
+
+    public static void lowCopyMerge(int[] array) {
+        if (array.length == 0)
+            return;
+        int[] aux = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            aux[i] = array[i];
+        }
+        array = sort_lowCopyMerge(aux, array, 0, array.length -1);
+        return;
+    }
+
+    private static int[] sort_lowCopyMerge(int[] array, int[] aux, int lo, int hi) {
+        if (lo != hi) {
+            int mid = (lo + hi)/2;
+            sort_merge(array, aux, lo, mid);
+            sort_merge(array, aux, mid + 1, hi);
+            merge_lowCopyMerge(array, aux, lo, mid, hi);
+        }
+        return aux;
+    }
+    private static void merge_lowCopyMerge(int[] array, int[] aux, int lo, int mid, int hi) {
+        for (int i = lo; i <= hi; i++) {
+            aux[i] = array[i];
+        }
+        int i = lo;
+        int j = mid+1;
+        for ( int k = lo; k <= hi; k++) {
+            if (j <= hi && i <= mid) {
+                if (aux[i] <= aux[j]) {
+                    array[k] = aux[i];
+                    i++;
+                } else {
+                    array[k] = aux[j];
+                    j++;
+                }
+            } else if (j <= hi) {
                 array[k] = aux[j];
                 j++;
+            } else {
+                array[k] = aux[i];
+                i++;
             }
         }
     }
