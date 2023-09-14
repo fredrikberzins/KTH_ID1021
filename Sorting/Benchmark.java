@@ -5,10 +5,10 @@ public class Benchmark {
 		System.out.printf("#%5s%15s%15s%15s%15s\n", "n", "selection", "insert", "merge", "lowCopyMerge");
 		for ( int n : sizes) {
 			System.gc();
-			int loop = 100;
+			int loop = 1000;
 			int[][] array2dOrgi = Inital.array2d(loop, n);
 			System.out.printf("%6d", n);
-			int k = 100;
+			int k = 1000;
 			
 			double min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
