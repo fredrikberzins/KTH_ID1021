@@ -1,4 +1,4 @@
-public class Benchmark {
+public class Benchmar {
     public static void main(String[] arg) {
 	int[] sizes = {100,200,100,200,100,200,400,800,1600,3200,6400};
 		System.out.printf("those: # searching through an array of length n, time in ns\n");

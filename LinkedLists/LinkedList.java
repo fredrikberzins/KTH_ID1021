@@ -1,4 +1,13 @@
-class LinkedList {
+public class LinkedList {
+
+    public LinkedList(int n) {
+        Node last = null;
+        for (int i = 0; i < n; i++) {
+            last = new Node(i);
+            last.next = last;
+        }
+        first = last;
+    }
 
     Node first;
 
@@ -6,14 +15,16 @@ class LinkedList {
         public int value;
         public Node next;
     
-        public Node (int value) {
+        public Node(int value) {
             this.value = value;
             this.next = null;
         }
     }
-
+    
     public void add(int item) {
-
+        Node n = new Node(item);
+        n.next = first;
+        first = n;
     }
 
     public int length() {
