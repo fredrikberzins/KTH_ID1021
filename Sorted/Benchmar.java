@@ -7,10 +7,10 @@ public class Benchmar {
 			System.gc();
 			int loop = 1000;
 			
-			int[] sortedArraySearch = Inital.sorted_search(n);
-			int[] sortedArrayDup = Inital.sorted_dup(n);
-			int[] indx = Inital.keys(loop, n);
-			int[][] sortedArray2D = Inital.array2d(loop, n);
+			int[] sortedArraySearch = Inita.sorted_search(n);
+			int[] sortedArrayDup = Inita.sorted_dup(n);
+			int[] indx = Inita.keys(loop, n);
+			int[][] sortedArray2D = Inita.array2d(loop, n);
 			System.out.printf("%5d", n);
 			int k = 1000;
 

@@ -1,26 +1,27 @@
 public class LinkedList {
 
-    public LinkedList(int n) {
-        Node last = null;
-        for (int i = 0; i < n; i++) {
-            last = new Node(i);
-            last.next = last;
-        }
-        first = last;
-    }
-
-    Node first;
-
     private class Node {
         public int value;
         public Node next;
     
-        public Node(int value) {
-            this.value = value;
-            this.next = null;
+        public Node(int val) {
+            this.value = val;
+            next = null;
         }
     }
-    
+
+    private Node first;
+
+    public LinkedList(int length) {
+        first = new Node(0);
+        Node n = first;
+		for (int i = 1; i < length; i++)
+		{
+			n.next = new Node(i);
+			n = n.next;
+		}
+    }
+
     public void add(int item) {
         Node n = new Node(item);
         n.next = first;

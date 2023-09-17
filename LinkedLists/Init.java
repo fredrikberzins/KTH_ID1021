@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Inital {
+public class Init {
     public static int[] unsorted(int n) {
 		Random rnd = new Random();	
 		int[] array = new int[n];
@@ -17,20 +17,21 @@ public class Inital {
         return array;
     }
 
-    public static int[] copyArr(int[] Arr) {
-        int[] tempArr = new int[Arr.length];
-        for (int i = 0; i < Arr.length; i++) {
-            tempArr[i] = Arr[i];
+    public static LinkedList[] list2d(int loop, int size) {
+        LinkedList[] listArray = new LinkedList[loop];
+		for (int i = 0; i < loop; i++) {
+            listArray[i] = new LinkedList(size);
         }
-        return tempArr;
+        return listArray;
     }
-
-    public static int[][] copyArr2d(int[][] Arr2d) {
-        int[][] tempArr = new int[Arr2d.length][Arr2d[0].length];
-        for (int i = 0; i < Arr2d.length; i++) {
-            for (int n = 0; n < Arr2d[i].length; n++) {
-                tempArr[i][n] = Arr2d[i][n];
-            }
+    
+    public static int[] append(int[] ArrayA, int[] ArrayB) {
+        int[] tempArr = new int[ArrayA.length + ArrayB.length];
+        for (int i = 0; i < ArrayA.length; i++) {
+            tempArr[i] = ArrayA[i];
+        }
+        for (int i = 0; i < ArrayB.length; i++) {
+            tempArr[ArrayA.length+i] = ArrayB[i];
         }
         return tempArr;
     }

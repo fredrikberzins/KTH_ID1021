@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Inital {
+public class Inita {
     public static int[] unsorted(int n) {
 		Random rnd = new Random();	
 		int[] array = new int[n];

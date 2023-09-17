@@ -7,7 +7,7 @@ public class sort {
                     curr = n;
                 }
             }
-            Inital.swap(array, i, curr);
+            Inita.swap(array, i, curr);
         }
         return;
     }
@@ -15,7 +15,7 @@ public class sort {
         for (int i = 0; i < array.length; i++) {
             for (int n = i; 0 < n; n--) {
                 if (array[n] < array[n - 1] ) {
-                    Inital.swap(array, n - 1 , n);
+                    Inita.swap(array, n - 1 , n);
                 }
                 else{
                     break;
@@ -70,7 +70,7 @@ public class sort {
         if (array.length == 0){
             return;
         }
-        int[] aux = Inital.copyArr(array);
+        int[] aux = Inita.copyArr(array);
         sort_lowCopyMerge(array, aux, 0, array.length -1);
         return;
     }

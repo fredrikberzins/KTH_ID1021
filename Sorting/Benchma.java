@@ -6,13 +6,13 @@ public class Benchma {
 		for ( int n : sizes) {
 			System.gc();
 			int loop = 1000;
-			int[][] array2dOrgi = Inital.array2d(loop, n);
+			int[][] array2dOrgi = Inita.array2d(loop, n);
 			System.out.printf("%6d", n);
 			int k = 1000;
 			
 			double min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
-				int[][] array2dSection = Inital.copyArr2d(array2dOrgi);
+				int[][] array2dSection = Inita.copyArr2d(array2dOrgi);
 				long t0 = System.nanoTime();
 				for (int j = 0; j < array2dSection.length; j++) {
 					sort.selection(array2dSection[j]);
@@ -25,7 +25,7 @@ public class Benchma {
 			
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
-				int[][] array2dInsert = Inital.copyArr2d(array2dOrgi);
+				int[][] array2dInsert = Inita.copyArr2d(array2dOrgi);
 				
 				long t0 = System.nanoTime();
 				for (int j = 0; j < array2dInsert.length; j++) {
@@ -39,7 +39,7 @@ public class Benchma {
 			
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
-				int[][] array2dMerge = Inital.copyArr2d(array2dOrgi);
+				int[][] array2dMerge = Inita.copyArr2d(array2dOrgi);
 				long t0 = System.nanoTime();
 				for (int j = 0; j < array2dMerge.length; j++) {
 					sort.merge(array2dMerge[j]);
@@ -52,7 +52,7 @@ public class Benchma {
 			
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
-				int[][] array2dLowCopyMerge = Inital.copyArr2d(array2dOrgi);
+				int[][] array2dLowCopyMerge = Inita.copyArr2d(array2dOrgi);
 				long t0 = System.nanoTime();
 				for (int j = 0; j < array2dLowCopyMerge.length; j++) {
 					sort.lowCopyMerge(array2dLowCopyMerge[j]);
