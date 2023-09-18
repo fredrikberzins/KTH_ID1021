@@ -1,7 +1,7 @@
 public class Benchm {
     public static void main(String[] arg) {
     int fixedSize = 800;
-	int[] sizes = {100,200,100,200,100,200,400,800,1600,3200,6400};
+	int[] sizes = {100, 200, 100, 200, 100, 200, 400, 800, 1600, 3200, 6400, 12800, 25600, 51200, 102400, 204800, 409600, 819200};
 		System.out.printf("those: # sort through an array of length n, time in ns\n");
 		System.out.printf("#%5s%15s%15s%15s%15s%15s%15s%15s%15s\n", "n", "L FixB", "L FixA", "A FixA", "A FixB", "L FixB(Build)", "L FixA(Build)", "A FixA(Build)", "A FixB(Build)");
 		for ( int n : sizes) {
@@ -13,7 +13,7 @@ public class Benchm {
 			LinkedList[] listAArray;
 			LinkedList listB;
 			System.out.printf("%6d", n);
-			
+			// List Fixed B
 			double min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
 				listAArray = Init.list2d(loop, n);
@@ -26,8 +26,8 @@ public class Benchm {
 				double t = (t1 - t0);
 				if(t < min) min = t;
 			}
-			System.out.printf("%9.0f(%4.1f)" , (min/(loop)),((min/(loop))/(n)));
-
+			System.out.printf("%9.0f(%4.1f)" , (min/loop),(min/(loop*n)));
+			// List Fixed A
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
 				listAArray = Init.list2d(loop, fixedSize);
@@ -40,8 +40,8 @@ public class Benchm {
 				double t = (t1 - t0);
 				if(t < min) min = t;
 			}
-			System.out.printf("%9.0f(%4.1f)" , (min/(loop)),((min/(loop))/(fixedSize)));
-			
+			System.out.printf("%9.0f(%4.1f)" , (min/loop),(min/(loop*fixedSize)));
+			// Array Fixed B
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
 				ArrayA = Init.array2d(loop,n);
@@ -54,8 +54,8 @@ public class Benchm {
 				double t = (t1 - t0);
 				if(t < min) min = t;
 			}
-			System.out.printf("%9.0f(%4.1f)" , (min/(loop)),((min/(loop))/(n+fixedSize)));
-			
+			System.out.printf("%9.0f(%4.1f)" , (min/loop),(min/(loop*(n+fixedSize))));
+			// Array Fixed A
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
 				ArrayA = Init.array2d(loop, fixedSize);
@@ -68,8 +68,8 @@ public class Benchm {
 				double t = (t1 - t0);
 				if(t < min) min = t;
 			}
-			System.out.printf("%9.0f(%4.1f)" , (min/(loop)),((min/(loop))/(n+fixedSize)));
-
+			System.out.printf("%9.0f(%4.1f)" , (min/loop),(min/(loop*(n+fixedSize))));
+			// List Fixed B (Build)
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
 				long t0 = System.nanoTime();
@@ -82,8 +82,8 @@ public class Benchm {
 				double t = (t1 - t0);
 				if(t < min) min = t;
 			}
-			System.out.printf("%9.0f(%4.1f)" , (min/(loop)),((min/(loop))/(n)));
-
+			System.out.printf("%9.0f(%4.1f)" , (min/loop),(min/(loop*(n))));
+			// List Fixed A (Build)
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
 				long t0 = System.nanoTime();
@@ -96,8 +96,8 @@ public class Benchm {
 				double t = (t1 - t0);
 				if(t < min) min = t;
 			}
-			System.out.printf("%9.0f(%4.1f)" , (min/(loop)),((min/(loop))/(fixedSize)));
-			
+			System.out.printf("%9.0f(%4.1f)" , (min/loop),(min/(loop*(fixedSize))));
+			// Array Fixed B (Build)
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
 				long t0 = System.nanoTime();
@@ -110,8 +110,8 @@ public class Benchm {
 				double t = (t1 - t0);
 				if(t < min) min = t;
 			}
-			System.out.printf("%9.0f(%4.1f)" , (min/(loop)),((min/(loop))/(n+fixedSize)));
-			
+			System.out.printf("%9.0f(%4.1f)" , (min/loop),(min/(loop*(n))));
+			// Array Fixed A (Build)
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
 				long t0 = System.nanoTime();
@@ -124,7 +124,7 @@ public class Benchm {
 				double t = (t1 - t0);
 				if(t < min) min = t;
 			}
-			System.out.printf("%9.0f(%4.1f)\n" , (min/(loop)),((min/(loop))/(n+fixedSize)));
+			System.out.printf("%9.0f(%4.1f)\n" , (min/loop),(min/(loop*(n))));
 		}
     }
 }
