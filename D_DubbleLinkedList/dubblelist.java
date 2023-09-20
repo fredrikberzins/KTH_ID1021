@@ -1,74 +1,58 @@
-public class DubbleList {
-    private class Node {
-        public int value;
-        public Node prev;
-        public Node next;
-    
-        public Node(int val) {
-            this.value = val;
-            prev = null;
-            next = null;
-        }
-    }
+import java.util.Random;
 
-    private Node first;
+public class DubbleList {
+
+    public static DubbleNode Dfirst;
 
     public DubbleList(int length) {
-        first = new Node(0);
-        Node n = first;
+        Dfirst = new DubbleNode();
+        DubbleNode n = Dfirst;
         for (int i = 1; i < length; i++)
         {
-            n.next = new Node(i);
+            n.next = new DubbleNode();
             n.next.prev = n;
             n = n.next;
         }
     }
 
-    public void add(int item) {
-        Node n = new Node(item);
-        first.prev = n;
-        n.next = first;
-        first = n;
-    }
-
     public int length() {
         int length = 0;
-        for (Node n = first; n == null; n = n.next) {
+        for (DubbleNode n = Dfirst; n != null; n = n.next) {
             length++;
         }
         return length;
     }
-    
-    public boolean find(int value) {
-        Node n = first;
-        while (n != null) {
-            if (n.value == value) {
-                return true;
+
+    public static DubbleNode[][] DNodeArray2d(DubbleList[] lists, int fixedSize) {
+        DubbleNode[][] returnlist = new DubbleNode[lists.length][fixedSize];
+		Random rnd = new Random();
+        for(int j = 0; j < lists.length; j++) {
+            for(int i = 0; i < fixedSize; i++) {	
+                DubbleNode n = Dfirst;
+                int temp = rnd.nextInt(lists[j].length());
+                for(int m = 0; m < temp ; m++) {
+                    n = n.next;
+                }
+                returnlist[j][i] = n;
             }
-            n = n.next;
         }
-        return false;
+        return returnlist;
     }
 
-    public void remove(int value) {
-        Node n = first;
-        if (n.value == value) {
-            first = n.next;
-        }
-        while (n.next != null) {
-            if (n.next.value == value) {
-                n = n.next.next;
-            }
-            n = n.next;
-        }
+    public void link(DubbleNode m) {
+        Dfirst.prev = m;
+        m.next = Dfirst;
+        Dfirst = m;
     }
 
-    public void append(DubbleList b) {
-        Node n = first;
-        while (n.next != null) {
-            n = n.next;
+    public void unlink(DubbleNode n) {
+        if (n != Dfirst) {
+            n.prev.next = n.next;
+            n.next.prev = n.prev;
         }
-        n.next = b.first;
-        n.next.prev = n;
+        else{
+            Dfirst = n.next;
+            n.next.prev = null;
+        }
     }
 }
