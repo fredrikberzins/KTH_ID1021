@@ -46,13 +46,16 @@ public class DubbleList {
     }
 
     public void unlink(DubbleNode n) {
-        if (n != Dfirst) {
-            n.prev.next = n.next;
-            n.next.prev = n.prev;
-        }
-        else{
+        if (n == Dfirst) {
             Dfirst = n.next;
             n.next.prev = null;
+        }
+        if (n.next != null) {
+            n.prev.next = null;
+        }
+        else{
+            n.prev.next = n.next;
+            n.next.prev = n.prev;
         }
     }
 }

@@ -1,13 +1,13 @@
 public class Bench {
     public static void main(String[] arg) {
-    int fixedSize = 400;
-	int[] sizes = {10, 100, 200, 100, 200, 100, 200, 400, 800, 1600, 3200, 6400, 12800};
+    int fixedSize = 1;
+	int[] sizes = {100, 200, 100, 200, 100, 200, 400, 800, 1600, 3200, 6400, 12800};
 		System.out.printf("those: # sort through an array of length n, time in ns\n");
 		System.out.printf("#%5s%15s%15s\n", "n", "Singel", "Dubble");
 		for ( int n : sizes) {
 			System.gc();
-			int loop = 5;
-			int k = 5;
+			int loop = 1;
+			int k = 1000;
 			SingelList[] SlistAArray = Ini.SArray(loop, n);
 			DubbleList[] DlistAArray = Ini.DArray(loop, n);
 			SingelNode[][] SNodeArray = SingelList.SNodeArray2d(SlistAArray, fixedSize);
@@ -42,7 +42,7 @@ public class Bench {
 				double t = (t1 - t0);
 				if(t < min) min = t;
 			}
-			System.out.printf("%9.0f(%4.1f)\n" , (min/loop),(min/(loop*(n))));
+			System.out.printf("%9.0f(%4.1f)\n" , (min/loop),(min/(loop*n)));
 		}
     }
 }

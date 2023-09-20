@@ -45,17 +45,20 @@ public class SingelList {
 
     public void unlink(SingelNode m) {
         SingelNode n = Sfirst;
-        if (m != Sfirst) {
-            while (n.next != null) {
-                if (n.next == m) {
-                    n = m.next;
-                }
-                n = n.next;
-            }
-        }
-        else {
+        if (m == Sfirst) {
             Sfirst = m.next;
         }
-        
+        else {
+            boolean loop = true;
+            while (loop && n != null) {
+                if (n.next == m) {
+                    n = m.next;
+                    loop = false;
+                }
+                else {
+                    n = n.next;
+                }
+            }
+        }
     }
 }
