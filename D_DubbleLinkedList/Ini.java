@@ -9,10 +9,10 @@ public class Ini {
         return returnnlist;
 
     }
-    public static DubbleList[] DArray(int loop, int n) {
-        DubbleList[] returnnlist = new DubbleList[loop];
+    public static DoubleList[] DArray(int loop, int n) {
+        DoubleList[] returnnlist = new DoubleList[loop];
         for(int i = 0; i < loop; i++) {
-            returnnlist[i] = new DubbleList(n);
+            returnnlist[i] = new DoubleList(n);
         }
         return returnnlist;
 

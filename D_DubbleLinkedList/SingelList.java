@@ -49,11 +49,11 @@ public class SingelList {
             Sfirst = m.next;
         }
         else {
-            boolean loop = true;
-            while (loop && n != null) {
+            while (n != null) {
                 if (n.next == m) {
-                    n = m.next;
-                    loop = false;
+                    n.next = m.next;
+                    m.next = null;
+                    break;
                 }
                 else {
                     n = n.next;
