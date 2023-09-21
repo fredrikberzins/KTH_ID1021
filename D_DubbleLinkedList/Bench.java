@@ -1,13 +1,13 @@
 public class Bench {
     public static void main(String[] arg) {
     int fixedSize = 400;
-	int[] sizes = {100, 200, 100, 200, 100, 200, 400, 800, 1600, 3200, 6400, 12800};
+	int[] sizes = {100, 200, 100, 200, 100, 200, 400, 800, 1600, 3200};
 		System.out.printf("those: # sort through an array of length n, time in ns\n");
-		System.out.printf("#%5s%20s%20s\n", "n", "Singel", "Dubble");
+		System.out.printf("#%5s%20s%10s\n", "n", "Singel", "Dubble");
 		for ( int n : sizes) {
 			System.gc();
 			int loop = 100;
-			int k = 1000;
+			int k = 100;
 			SingelList[] SlistAArray = Ini.SArray(loop, n);
 			DoubleList[] DlistAArray = Ini.DArray(loop, n);
 			SingelNode[][] SNodeArray = SingelList.SNodeArray2d(SlistAArray, fixedSize);
@@ -27,7 +27,7 @@ public class Bench {
 				double t = (t1 - t0);
 				if(t < min) min = t;
 			}
-			System.out.printf("%13.0f(%5.1f)" , (min/loop),(min/(loop*n*100)));
+			System.out.printf("%15.0f(%3.1f)" , (min/loop),(min/(loop*n*1000)));
 			// Dubble
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
@@ -42,7 +42,7 @@ public class Bench {
 				double t = (t1 - t0);
 				if(t < min) min = t;
 			}
-			System.out.printf("%13.0f(%5.1f)\n" , (min/loop),(min/(loop*n)));
+			System.out.printf("%10.0f\n" , (min/loop));
 		}
     }
 }
