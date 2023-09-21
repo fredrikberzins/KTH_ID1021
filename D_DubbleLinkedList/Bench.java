@@ -6,7 +6,7 @@ public class Bench {
 		System.out.printf("#%5s%20s%20s\n", "n", "Singel", "Dubble");
 		for ( int n : sizes) {
 			System.gc();
-			int loop = 1000;
+			int loop = 100;
 			int k = 1000;
 			SingelList[] SlistAArray = Ini.SArray(loop, n);
 			DoubleList[] DlistAArray = Ini.DArray(loop, n);
@@ -27,7 +27,7 @@ public class Bench {
 				double t = (t1 - t0);
 				if(t < min) min = t;
 			}
-			System.out.printf("%13.0f(%5.1f)" , (min/loop),(min/(loop*n)));
+			System.out.printf("%13.0f(%5.1f)" , (min/loop),(min/(loop*n*100)));
 			// Dubble
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
