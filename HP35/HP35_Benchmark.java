@@ -1,4 +1,4 @@
-public class Benchmark {
+public class HP35_Benchmark {
     int instructionPointer;
 
     private static void Bench_Static(int loop,int ops, Stack_Static stack) {
