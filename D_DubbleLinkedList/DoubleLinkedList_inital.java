@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Ini {
+public class DoubleLinkedList_inital {
     public static SingelList[] SArray(int loop, int n) {
         SingelList[] returnnlist = new SingelList[loop];
         for(int i = 0; i < loop; i++) {

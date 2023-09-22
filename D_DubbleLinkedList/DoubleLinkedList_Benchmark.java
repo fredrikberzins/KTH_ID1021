@@ -1,4 +1,4 @@
-public class Bench {
+public class DoubleLinkedList_Benchmark {
     public static void main(String[] arg) {
     int fixedSize = 400;
 	int[] sizes = {100, 200, 100, 200, 100, 200, 400, 800, 1600, 3200};
@@ -8,8 +8,8 @@ public class Bench {
 			System.gc();
 			int loop = 100;
 			int k = 100;
-			SingelList[] SlistAArray = Ini.SArray(loop, n);
-			DoubleList[] DlistAArray = Ini.DArray(loop, n);
+			SingelList[] SlistAArray = DoubleLinkedList_inital.SArray(loop, n);
+			DoubleList[] DlistAArray = DoubleLinkedList_inital.DArray(loop, n);
 			SingelNode[][] SNodeArray = SingelList.SNodeArray2d(SlistAArray, fixedSize);
 			DoubleNode[][] DNodeArray = DoubleList.DNodeArray2d(DlistAArray, fixedSize);
 			System.out.printf("%6d", n);
