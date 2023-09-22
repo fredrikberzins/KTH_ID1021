@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class DoubleLinkedList_inital {
     public static SingelList[] SArray(int loop, int n) {
         SingelList[] returnnlist = new SingelList[loop];
