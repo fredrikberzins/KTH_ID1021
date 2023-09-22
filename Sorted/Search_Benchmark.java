@@ -1,4 +1,4 @@
-public class Benchmar {
+public class Search_Benchmark {
     public static void main(String[] arg) {
 	int[] sizes = {100,200,100,200,100,200,400,800,1600,3200,6400};
 		System.out.printf("those: # searching through an array of length n, time in ns\n");
@@ -7,10 +7,10 @@ public class Benchmar {
 			System.gc();
 			int loop = 1000;
 			
-			int[] sortedArraySearch = Inita.sorted_search(n);
-			int[] sortedArrayDup = Inita.sorted_dup(n);
-			int[] indx = Inita.keys(loop, n);
-			int[][] sortedArray2D = Inita.array2d(loop, n);
+			int[] sortedArraySearch = Sorting_Inital.sorted_search(n);
+			int[] sortedArrayDup = Sorting_Inital.sorted_dup(n);
+			int[] indx = Sorting_Inital.keys(loop, n);
+			int[][] sortedArray2D = Sorting_Inital.array2d(loop, n);
 			System.out.printf("%5d", n);
 			int k = 1000;
 

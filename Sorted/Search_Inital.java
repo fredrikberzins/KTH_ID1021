@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Inital {
+public class Search_Inital {
     public static int[] sorted_dup(int n) {
         Random rnd = new Random();
         int[] array = new int[n];
