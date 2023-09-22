@@ -1,4 +1,4 @@
-public class Benchm {
+public class LinkedLists_Benchmark {
     public static void main(String[] arg) {
     int fixedSize = 400;
 	int[] sizes = {100, 200, 100, 200, 100, 200, 400, 800, 1600, 3200, 6400, 12800, 25600, 51200, 102400, 204800, 409600, 819200};
@@ -16,7 +16,7 @@ public class Benchm {
 			// List Fixed B
 			double min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
-				listAArray = Init.list2d(loop, n);
+				listAArray = LinkedList_Inital.list2d(loop, n);
 				listB = new LinkedList(fixedSize);
 				long t0 = System.nanoTime();
 				for (int m = 0; m < loop; m++) {
@@ -30,7 +30,7 @@ public class Benchm {
 			// List Fixed A
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
-				listAArray = Init.list2d(loop, fixedSize);
+				listAArray = LinkedList_Inital.list2d(loop, fixedSize);
 				listB = new LinkedList(n);
 				long t0 = System.nanoTime();
 				for (int m = 0; m < loop; m++) {
@@ -44,11 +44,11 @@ public class Benchm {
 			// Array Fixed B
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
-				ArrayA = Init.array2d(loop,n);
-				ArrayB = Init.unsorted(fixedSize);
+				ArrayA = LinkedList_Inital.array2d(loop,n);
+				ArrayB = LinkedList_Inital.unsorted(fixedSize);
 				long t0 = System.nanoTime();
 				for (int m = 0; m < loop; m++) {
-					ArrayA[m] = Init.append(ArrayA[m], ArrayB);
+					ArrayA[m] = LinkedList_Inital.append(ArrayA[m], ArrayB);
 				}
 				long t1 = System.nanoTime();
 				double t = (t1 - t0);
@@ -58,11 +58,11 @@ public class Benchm {
 			// Array Fixed A
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
-				ArrayA = Init.array2d(loop, fixedSize);
-				ArrayB = Init.unsorted(n);
+				ArrayA = LinkedList_Inital.array2d(loop, fixedSize);
+				ArrayB = LinkedList_Inital.unsorted(n);
 				long t0 = System.nanoTime();
 				for (int m = 0; m < loop; m++) {
-					ArrayA[m] = Init.append(ArrayA[m], ArrayB);
+					ArrayA[m] = LinkedList_Inital.append(ArrayA[m], ArrayB);
 				}
 				long t1 = System.nanoTime();
 				double t = (t1 - t0);
@@ -73,7 +73,7 @@ public class Benchm {
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
 				long t0 = System.nanoTime();
-				listAArray = Init.list2d(loop, n);
+				listAArray = LinkedList_Inital.list2d(loop, n);
 				listB = new LinkedList(fixedSize);
 				long t1 = System.nanoTime();
 				double t = (t1 - t0);
@@ -84,7 +84,7 @@ public class Benchm {
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
 				long t0 = System.nanoTime();
-				listAArray = Init.list2d(loop, fixedSize);
+				listAArray = LinkedList_Inital.list2d(loop, fixedSize);
 				listB = new LinkedList(n);
 				long t1 = System.nanoTime();
 				double t = (t1 - t0);
@@ -95,8 +95,8 @@ public class Benchm {
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
 				long t0 = System.nanoTime();
-				ArrayA = Init.array2d(loop, n);
-				ArrayB = Init.unsorted(fixedSize);
+				ArrayA = LinkedList_Inital.array2d(loop, n);
+				ArrayB = LinkedList_Inital.unsorted(fixedSize);
 				long t1 = System.nanoTime();
 				double t = (t1 - t0);
 				if(t < min) min = t;
@@ -106,8 +106,8 @@ public class Benchm {
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
 				long t0 = System.nanoTime();
-				ArrayA = Init.array2d(loop, fixedSize);
-				ArrayB = Init.unsorted(n);
+				ArrayA = LinkedList_Inital.array2d(loop, fixedSize);
+				ArrayB = LinkedList_Inital.unsorted(n);
 				long t1 = System.nanoTime();
 				double t = (t1 - t0);
 				if(t < min) min = t;
