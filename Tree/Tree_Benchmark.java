@@ -1,7 +1,7 @@
 public class Tree_Benchmark {
-    int fixedSize = 400;
     public static void main(String[] arg) {
-		int[] sizes = {100, 200, 100, 200, 100, 200, 400, 800, 1600, 3200, 6400};
+    	int fixedSize = 1000;
+		int[] sizes = {100, 200, 100, 200, 100, 200, 400, 800, 1600, 3200, 6400, 12800, 25600, 51200};
 		System.out.printf("those: # sort through an array of length n, time in ns\n");
 		System.out.printf("#%5s%20s%10s\n", "n", "first", "second");
 		for ( int n : sizes) {
@@ -9,7 +9,7 @@ public class Tree_Benchmark {
 			int loop = 1000;
 			int k = 1000;
 			BinaryTree[] B = BinaryTree.BinaryTree2dArray(loop, n);
-			int[][] keyArray = Tree_Node.key2dArray(B, 400);
+			int[][] keyArray = Tree_Node.key2dArray(B, fixedSize);
 			System.out.printf("%6d", n);
 			// Singel
 			double min = Double.POSITIVE_INFINITY;
@@ -24,7 +24,7 @@ public class Tree_Benchmark {
 				double t = (t1 - t0);
 				if(t < min) min = t;
 			}
-			System.out.printf("%15.0f(%3.1f)" , (min/loop),(min*0/(loop)));
+			System.out.printf("%15.0f(%3.1f)" , (min/loop),(min/(loop*(fixedSize*Math.log(n)))));
 			// Dubble
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
