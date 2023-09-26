@@ -1,8 +1,11 @@
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Random;
+import java.util.Stack;
 
 public class BinaryTree {
 
-    Tree_Node root;
+    TreeNode root;
 
     public BinaryTree() {
         root = null;
@@ -12,7 +15,7 @@ public class BinaryTree {
 	    Random rnd = new Random();
         BinaryTree R = new BinaryTree();
         for (int i = 0; i < length; i++) {
-            Integer key = rnd.nextInt(length*2);
+            Integer key = rnd.nextInt(length*10);
             Integer value = -key;
             R.add(key, value);
         }
@@ -23,9 +26,9 @@ public class BinaryTree {
         root = add(root, key, value); 
     }
     
-    private Tree_Node add(Tree_Node n, Integer key, Integer value) {
+    private TreeNode add(TreeNode n, Integer key, Integer value) {
         if (n == null) {
-            return new Tree_Node(key, value);
+            return new TreeNode(key, value);
         } else if (n.key == key) {
             n.value = value;
         } else if (n.key > key) {
@@ -37,15 +40,15 @@ public class BinaryTree {
     }
 
     public Integer lookup(Integer key) {
-        Tree_Node n = lookup(root, key); 
+        TreeNode n = lookup(root, key); 
         if (n == null) {
             return null;
         }
         return n.value;
     }
     
-    private Tree_Node lookup(Tree_Node n, Integer key) {
-        Tree_Node R = null;
+    private TreeNode lookup(TreeNode n, Integer key) {
+        TreeNode R = null;
         if (n.key == key) {
             R = n;
         } else if (n.key > key) {
@@ -62,5 +65,37 @@ public class BinaryTree {
         }
         return R;
     }
-}
+    public class TreeIterator implements Iterator<Integer> {
+        private Stack<TreeNode> s;
 
+        public TreeIterator(TreeNode n) {
+            s = new Stack<TreeNode>();
+            while (n != null) {
+                s.push(n);
+                n = n.left;
+            }
+        }
+        @Override
+        public boolean hasNext() {
+            return !s.isEmpty();
+        }
+        @Override
+        public Integer next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            TreeNode c = s.pop();
+            if (c.right != null) {
+                while (c.right != null) {
+                    s.push(c.right);
+                    c.right = c.right.left;
+                }
+            }
+            return c.value;
+        }
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+    }
+}

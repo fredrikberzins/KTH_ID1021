@@ -1,10 +1,10 @@
 import java.util.Random;
 
-public class Tree_Node {
+public class TreeNode {
     public Integer key;
     public Integer value;
-    public Tree_Node left, right;
-    public Tree_Node(Integer key, Integer value) {
+    public TreeNode left, right;
+    public TreeNode(Integer key, Integer value) {
         this.key = key;
         this.value = value;
         this.left = this.right = null;
@@ -18,7 +18,7 @@ public class Tree_Node {
             right.print();
     }
 
-    private static void loop(Tree_Node n) {
+    private static void loop(TreeNode n) {
         Random rnd = new Random();
         int val = rnd.nextInt(2);
         if (val == 0 && n.left != null) {
@@ -36,7 +36,7 @@ public class Tree_Node {
         int[][] keyArr = new int[B.length][fixedSize];
         int key;
         for (int i = 0; i < B.length; i ++) {
-            Tree_Node n = B[i].root;
+            TreeNode n = B[i].root;
             for (int j = 0; j < fixedSize; j++) {
                 int val = rnd.nextInt(2);
                 if (val == 0 && n.left != null) {

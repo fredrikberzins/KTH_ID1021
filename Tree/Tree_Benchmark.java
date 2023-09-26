@@ -1,15 +1,15 @@
 public class Tree_Benchmark {
     public static void main(String[] arg) {
-    	int fixedSize = 1000;
+    	int fixedSize = 400;
 		int[] sizes = {100, 200, 100, 200, 100, 200, 400, 800, 1600, 3200, 6400, 12800, 25600, 51200};
 		System.out.printf("those: # sort through an array of length n, time in ns\n");
-		System.out.printf("#%5s%20s%10s\n", "n", "first", "second");
+		System.out.printf("#%5s%20s\n", "n", "lookup");
 		for ( int n : sizes) {
 			System.gc();
 			int loop = 1000;
-			int k = 1000;
+			int k = 100;
 			BinaryTree[] B = BinaryTree.BinaryTree2dArray(loop, n);
-			int[][] keyArray = Tree_Node.key2dArray(B, fixedSize);
+			int[][] keyArray = TreeNode.key2dArray(B, fixedSize);
 			System.out.printf("%6d", n);
 			// Singel
 			double min = Double.POSITIVE_INFINITY;
@@ -24,17 +24,7 @@ public class Tree_Benchmark {
 				double t = (t1 - t0);
 				if(t < min) min = t;
 			}
-			System.out.printf("%15.0f(%3.1f)" , (min/loop),(min/(loop*(fixedSize*Math.log(n)))));
-			// Dubble
-			min = Double.POSITIVE_INFINITY;
-			for (int i = 0; i < k; i++) {
-				long t0 = System.nanoTime();
-				// inner
-				long t1 = System.nanoTime();
-				double t = (t1 - t0);
-				if(t < min) min = t;
-			}
-			System.out.printf("%10.0f\n" , (min/loop));
+			System.out.printf("%15.0f(%3.1f)\n" , (min/loop),(min/(100*loop*(Math.log(n)))));
 		}
     }
 }
