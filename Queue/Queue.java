@@ -31,6 +31,8 @@ public class Queue {
 
     public Integer remove() {
         Node n = first;
+        int R = n.value;
         first = n.next;
+        return R;
     }
 }
