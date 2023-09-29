@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.Random;
+
 public class Quick_LinkedList {
 
     private class Node {
@@ -6,65 +9,37 @@ public class Quick_LinkedList {
     
         public Node(int val) {
             this.value = val;
-            next = null;
+            this.next = null;
         }
     }
 
     private Node first;
 
-    public Quick_LinkedList(int length) {
-        first = new Node(0);
+    public Quick_LinkedList(int[] Arr) {
+        Random rnd = new Random();
+        first = new Node(Arr[0]);
         Node n = first;
-		for (int i = 1; i < length; i++)
-		{
-			n.next = new Node(i);
+		for (int i = 1; i < Arr.length; i++) {
+			n.next = new Node(Arr[i]);
 			n = n.next;
 		}
     }
 
-    public void add(int item) {
-        Node n = new Node(item);
-        n.next = first;
-        first = n;
-    }
-
-    public int length() {
-        int length = 0;
-        for (Node n = first; n == null; n = n.next) {
-            length++;
-        }
-        return length;
-    }
-    
-    public boolean find(int value) {
-        Node n = first;
-        while (n != null) {
-            if (n.value == value) {
-                return true;
+    public Quick_LinkedList[] Quick_LinkedListArr(int[][] Arr) {
+        Random rnd = new Random();
+        Quick_LinkedList[] List2d = new Quick_LinkedList[Arr.length];
+        for (int i = 0; i < Arr.length; i++) {
+            List2d[i].first = new Node(Arr[i][0]);
+            Node n = first;
+            for (int m = 1; m < Arr.length; m++) {
+                n.next = new Node(Arr[i][m]);
+                n = n.next;
             }
-            n = n.next;
         }
-        return false;
+        return List2d;
     }
 
-    public void remove(int value) {
-        Node n = first;
-        if (n.value == value) {
-            first = n.next;
-        }
-        while (n.next != null) {
-            if (n.next.value == value) {
-                n = n.next.next;
-            }
-            n = n.next;
-        }
-    }
-
-    public void append(Quick_LinkedList b) {
-        Node n = first;
-        while (n.next != null) {
-            n = n.next;
-        }
-        n.next = b.first;
+    public Quick_Sort() {
+        
     }
 }
