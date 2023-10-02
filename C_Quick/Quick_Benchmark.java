@@ -8,15 +8,17 @@ public class Quick_Benchmark {
 			int loop = 1000;
 			int k = 1000;
 
-			int[][] Arr = Unsorted2d(loop, n);
-			Quick_LinkedList[] List = new Quick_LinkedListArr(Arr);
+			int[][] Arr = Quick_Inital.Unsorted2d(loop, n);
+			Quick_LinkedList[] LinkList = Quick_LinkedList.LinkedListArr(Arr);
 
 			System.out.printf("%5d", n);
 
 			Double min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
 				long t0 = System.nanoTime();
-
+				for (int m = 0; m < loop; m++) {
+					Quick_Inital.QuickSortArr(Arr[m], 0, Arr[m].length);
+				}
 				long t1 = System.nanoTime();
 				double t = (t1 - t0);
 				if (t < min) min = t;
@@ -26,7 +28,9 @@ public class Quick_Benchmark {
 			min = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
 				long t0 = System.nanoTime();
-				
+				for (int m = 0; m < loop; m++) {
+					Quick_LinkedList.QuickSortList(LinkList[m].first, LinkList[m].end);
+				}
 				long t1 = System.nanoTime();
 				double t = (t1 - t0);
 				if (t < min) min = t;

@@ -1,11 +1,10 @@
-import java.util.List;
 import java.util.Random;
 
 public class Quick_LinkedList {
 
     private class Node {
-        public int value;
-        public Node next;
+        private int value;
+        private Node next;
     
         public Node(int val) {
             this.value = val;
@@ -13,7 +12,8 @@ public class Quick_LinkedList {
         }
     }
 
-    private Node first;
+    public Node first;
+    public Node end;
 
     public Quick_LinkedList(int[] Arr) {
         Random rnd = new Random();
@@ -23,9 +23,10 @@ public class Quick_LinkedList {
 			n.next = new Node(Arr[i]);
 			n = n.next;
 		}
+        Node end = n;
     }
 
-    public Quick_LinkedList[] Quick_LinkedListArr(int[][] Arr) {
+    public static Quick_LinkedList[] LinkedListArr(int[][] Arr) {
         Random rnd = new Random();
         Quick_LinkedList[] List2d = new Quick_LinkedList[Arr.length];
         for (int i = 0; i < Arr.length; i++) {
@@ -39,7 +40,29 @@ public class Quick_LinkedList {
         return List2d;
     }
 
-    public Quick_Sort() {
-        
+    public static void QuickSortList(Node lo, Node hi) {
+        Node pivotNode = lo;
+
+        if ( lo == hi) {
+            int pivot = hi.value;
+            Node curr = lo.next;
+
+            while (curr != hi) {
+                if (curr.value < pivot) {
+                    pivotNode = pivotNode.next;
+                    swap(pivotNode, curr);
+                }
+                curr = curr.next;
+            }
+            swap(hi, pivotNode);
+        }
+        QuickSortList(lo, pivotNode);
+        QuickSortList(pivotNode.next, hi);
     }
+    public static void swap(Node a, Node b) {
+        int temp = a.value;
+        a.value = b.value;
+        b.value = temp;
+    }
+
 }
