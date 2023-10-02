@@ -1,9 +1,9 @@
-public class Queue {
+public class Queue<T> {
     private class Node {
-        public Integer value;
+        public T value;
         public Node next;
     
-        public Node(int val) {
+        public Node(T val) {
             this.value = val;
             this.next = null;
         }
@@ -12,27 +12,31 @@ public class Queue {
     private Node first;
     private Node last;
 
-    public Queue(int length) {
-        first = new Node(0);
-        Node n = first;
-		for (int i = 1; i < length; i++)
-		{
-			n.next = new Node(i);
-			n = n.next;
-		}
-        last = n;
+    public Queue() {
+        first = null;
+        last = null;
     }
 
-    public void add(Integer item) {
-        Node n = new Node(item);
-        n = last.next;
-        last = n;
+    public void add(T item) {
+        if (first == null) {
+            first = new Node(item);
+            last = first;
+        }
+        else {
+            last.next = new Node(item);
+            last = last.next;
+        }
     }
 
-    public Integer remove() {
+    public T remove() {
         Node n = first;
-        int R = n.value;
-        first = n.next;
-        return R;
+        if (first == null) {
+            return null;
+        } else if (first.next == last) {
+            last = null;
+        } else {
+            first = first.next;
+        }
+        return n.value;
     }
 }
