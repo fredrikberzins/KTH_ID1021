@@ -5,7 +5,7 @@ public class Queue_Benchmark {
 		System.out.printf("#%6s%25s%25s%25s%25s\n", "n", "Array", "Array large", "Queue Singel", "Queue Dual");
 		for ( int n : sizes) {
 			System.gc();
-			int loop = 10;
+			int loop = 1000;
 			int k = 1000;
 
 			Queue_Array<Integer> arr;
