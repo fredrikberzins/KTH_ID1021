@@ -1,41 +1,20 @@
 import java.util.Random;
 
 public class Queue_Inital {
-    public static int[] sorted_dup(int n) {
-        Random rnd = new Random();
-        int[] array = new int[n];
-        int next = rnd.nextInt(n/2);
-
-        for (int i = 0; i < n ; i++) {
-            next += rnd.nextInt(n/2) + 1;
-            array[i] = next;
-        }
-        return array;
-    }
-    public static int[] sorted_search(int n) {
-        Random rnd = new Random();
-        int[] array = new int[n];
-        int next = rnd.nextInt(10);
-
-        for (int i = 0; i < n ; i++) {
-            next += rnd.nextInt(10) + 1;
-            array[i] = next;
-        }
-        return array;
-    }
-    public static int[] keys(int loop, int n) {
+    public static Integer[] unsorted(int n) {
 		Random rnd = new Random();	
-		int[] indx = new int[loop];
-		for (int i = 0; i < loop ; i++) {
-			indx[i] = rnd.nextInt(n*5);
+		Integer[] array = new Integer[n];
+		for (int i = 0; i < n ; i++) {
+			array[i] = rnd.nextInt(n*10);
 		}	
-		return indx;
+		return array;
     }
-    public static int[][] array2d(int loop, int n) {
-        int[][] temp = new int[loop][n];
+
+    public static Integer[][] arr2d(int loop, int size) {
+        Integer[][] arr = new Integer[loop][size] ;
 		for (int i = 0; i < loop; i++) {
-            temp[i] = sorted_dup(n);
+            arr[i] = unsorted(size);
         }
-        return temp;
+        return arr;
     }
 }

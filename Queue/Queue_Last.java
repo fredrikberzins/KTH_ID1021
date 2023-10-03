@@ -1,10 +1,11 @@
-public class Queue<T> {
+public class Queue_Last<T> {
+    
     private class Node {
-        public T value;
+        public T item;
         public Node next;
     
-        public Node(T val) {
-            this.value = val;
+        public Node(T item) {
+            this.item = item;
             this.next = null;
         }
     }
@@ -12,7 +13,7 @@ public class Queue<T> {
     private Node first;
     private Node last;
 
-    public Queue() {
+    public Queue_Last() {
         first = null;
         last = null;
     }
@@ -37,6 +38,6 @@ public class Queue<T> {
         } else {
             first = first.next;
         }
-        return n.value;
+        return n.item;
     }
 }
