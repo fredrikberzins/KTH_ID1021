@@ -34,8 +34,8 @@ public class Quick_LinkedList {
 
             while (curr != hi) {
                 if (curr.value <= pivotValue) {
-                    pivot = pivot.next;
                     swap(pivot, curr);
+                    pivot = pivot.next;
                 }
                 curr = curr.next;
             }
