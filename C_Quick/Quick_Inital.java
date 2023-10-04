@@ -5,30 +5,29 @@ public class Quick_Inital {
     public static int[][] Unsorted2d(int amount, int length) {
         Random rnd = new Random();
         int[][] R = new int[amount][length];
-		for (int i = 1; i < amount; i++) {
-			for (int m = 1; m < length; m++) {
+		for (int i = 0; i < amount; i++) {
+			for (int m = 0; m < length; m++) {
                 R[i][m] = rnd.nextInt(length*10);
             }
 		}
         return R;
     }
 
-    public static void QuickSortArr(int[] arr, int lo, int hi) {
-        if (lo < hi) {
-            int pivot = arr[hi];
-            int curr = lo - 1;
+    public static void QuickSortArr(int[] arr, int loIndx, int hiIndx) {
+        if (loIndx < hiIndx) {
+            int pivotValue = arr[hiIndx];
+            int pivot = loIndx - 1;
 
-            for (int j = lo; j < hi; j++) {
-                if (arr[j] <= pivot) {
-                    curr++;
-                    swap(arr, curr, j);
+            for (int j = loIndx; j < hiIndx; j++) {
+                if (arr[j] <= pivotValue) {
+                    pivot++;
+                    swap(arr, pivot, j);
                 }
             }
 
-            swap(arr, curr + 1, hi);
-            int pivotIndx = curr + 1;
-            QuickSortArr(arr, lo, (pivotIndx-1));
-            QuickSortArr(arr, pivotIndx, hi);
+            swap(arr, pivot + 1, hiIndx);
+            QuickSortArr(arr, loIndx, pivot);
+            QuickSortArr(arr, (pivot+1), hiIndx);
         }
     }
 
