@@ -25,8 +25,8 @@ public class Quick_Inital {
                 }
             }
 
-            swap(arr, pivot + 1, hiIndx);
-            QuickSortArr(arr, loIndx, pivot);
+            swap(arr, pivot+1, hiIndx);
+            QuickSortArr(arr, loIndx, (pivot-1));
             QuickSortArr(arr, (pivot+1), hiIndx);
         }
     }
@@ -35,5 +35,15 @@ public class Quick_Inital {
         int temp = arr[a];
         arr[a] = arr[b];
         arr[b] = temp;
+    }
+
+    public static int[][] copy(int[][] Arr) {
+        int[][] temp = new int[Arr.length][Arr[0].length];
+        for (int i = 0; i < Arr.length; i++) {
+            for (int m = 0; m < Arr[0].length; m++) {
+                temp[i][m] = Arr[i][m];
+            }
+        }
+        return temp;
     }
 }
