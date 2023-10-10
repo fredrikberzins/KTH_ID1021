@@ -1,19 +1,18 @@
 public class Heap_Benchmark {
     public static void main(String[] arg) {
 	int[] sizes = {100, 200, 100, 200, 100, 200, 400, 800, 1600, 3200, 6400, 12800};
-		//--System.out.printf("# time in ns\n");
-		//--System.out.printf("%6s%40s%40s%40s%40s\n", "", "List Add", "List Remove", "Array", "Tree");
-		//--System.out.printf("%6s%20s%20s%20s%20s%20s%20s%20s%20s\n", "n", "Add", "Remove", "Add", "Remove", "Add", "Remove", "Add", "Remove");
+		/*--*/System.out.printf("# time in ns\n");
+		/*--*/System.out.printf("%6s%30s%40s%40s%40s\n", "", "List Add", "List Remove", "Array", "Tree");
+		/*--*/System.out.printf("%5s|%20s%19s|%20s%19s|%20s%19s|%20s%20s\n", "n", "Add", "Remove", "Add", "Remove", "Add", "Remove", "Add", "Remove");
 		for ( int n : sizes) {
 			n= n/10;
 			System.gc();
 			int k = 2;
 			
 			Integer[] Arr = Heap_inital.Unsorted2d(n);
-			//Heap_Array array = new Heap_Array();
-			//Heap_Tree tree = new Heap_Tree();
+			//--Heap_Tree tree = new Heap_Tree();
 
-			//--System.out.printf("%6d", n);
+			/*--*/System.out.printf("%5d|", n);
 
 			double addMin = Double.POSITIVE_INFINITY;
 			double removeMin = Double.POSITIVE_INFINITY;
@@ -35,8 +34,8 @@ public class Heap_Benchmark {
 				double removeT = (removeT1 - removeT0);
 				if(removeT < removeMin) removeMin = removeT;
 			}
-			//--System.out.printf("%15.0f(%3.1f)", (addMin), (addMin/(n*10)));
-			//--System.out.printf("%15.0f(%3.1f)", (removeMin), (removeMin/(n*n)));
+			/*--*/System.out.printf("%15.0f(%3.1f)", (addMin), (addMin/(n*100)));
+			/*--*/System.out.printf("%14.0f(%3.1f)|", (removeMin), (removeMin/(n*n*100)));
 
 			addMin = Double.POSITIVE_INFINITY;
 			removeMin = Double.POSITIVE_INFINITY;
@@ -58,8 +57,8 @@ public class Heap_Benchmark {
 				double removeT = (removeT1 - removeT0);
 				if(removeT < removeMin) removeMin = removeT;
 			}
-			//--System.out.printf("%15.0f(%3.1f)", (addMin), (addMin/(n*n)));
-			//--System.out.printf("%15.0f(%3.1f)", (removeMin), (removeMin/(n*10)));
+			/*--*/System.out.printf("%15.0f(%3.1f)", (addMin), (addMin/(n*n*10)));
+			/*--*/System.out.printf("%14.0f(%3.1f)|", (removeMin), (removeMin/(n*100)));
 
 			addMin = Double.POSITIVE_INFINITY;
 			removeMin = Double.POSITIVE_INFINITY;
@@ -83,8 +82,8 @@ public class Heap_Benchmark {
 				double removeT = (removeT1 - removeT0);
 				if(removeT < removeMin) removeMin = removeT;
 			}
-			//--System.out.printf("%15.0f(%3.1f)", (addMin), (addMin/(n)));
-			//--System.out.printf("%15.0f(%3.1f)", (removeMin), (removeMin/(n)));
+			/*--*/System.out.printf("%15.0f(%3.1f)", (addMin), (addMin/(n)));
+			/*--*/System.out.printf("%14.0f(%3.1f)|", (removeMin), (removeMin/(n)));
 
 			addMin = Double.POSITIVE_INFINITY;
 			removeMin = Double.POSITIVE_INFINITY;
@@ -108,8 +107,8 @@ public class Heap_Benchmark {
 				double removeT = (removeT1 - removeT0);
 				if(removeT < removeMin) removeMin = removeT;
 			}*/
-			//--System.out.printf("%15.0f(%3.1f)", (addMin), (addMin/(n)));
-			//--System.out.printf("%15.0f(%3.1f)\n", (removeMin), (removeMin/(n)));
+			/*--*/System.out.printf("%15.0f(%3.1f)", (addMin), (addMin/(n)));
+			/*--*/System.out.printf("%15.0f(%3.1f)\n", (removeMin), (removeMin/(n)));
 		}
     }
 }
