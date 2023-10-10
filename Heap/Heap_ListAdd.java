@@ -1,54 +1,37 @@
 public class Heap_ListAdd {
-    private Heap_Node first;
+    private Heap_ListNode first;
 
     public Heap_ListAdd() {
         this.first = null;
     }
 
-    public static Heap_ListAdd[] LinkedListArr(int[][] Arr) {
-        Heap_ListAdd[] List2d = new Heap_ListAdd[Arr.length];
-        for (int i = 0; i < List2d.length; i++) {
-            List2d[i] = new Heap_ListAdd();
-            if (Arr[i].length == 0) {
-                List2d[i].first = null;
-            }
-            else {
-                List2d[i].first = new Heap_Node(Arr[i][0]);
-                Heap_Node n = List2d[i].first;
-                for (int m = 1; m < Arr[i].length; m++) {
-                    List2d[i].add(Arr[i][m]);
-                }
-            }
-        }
-        return List2d;
+    public Boolean empty() {
+        return first == null;
     }
 
-    public void add(int item) {
-        Heap_Node n = new Heap_Node(item);
-        n.next = first;
-        first = n;
-    }
-    
-    public boolean find(int value) {
-        Heap_Node n = first;
-        while (n != null) {
-            if (n.value == value) {
-                return true;
-            }
-            n = n.next;
-        }
-        return false;
+    public void add(Integer value) {
+        first = new Heap_ListNode(value, first);
     }
 
-    public Heap_Node remove() {
-        Heap_Node n = first;
-        Heap_Node u = first;
-        while (n != null) {
-            if (n.value < u.value) {
+    public Heap_ListNode remove() {
+        Heap_ListNode n = first;
+        if (first == null) {
+            return null;
+        } else if (first.next == null) {
+            first = first.next;
+            return n;
+        }
+
+        Heap_ListNode u = first;
+        
+        while (n.next != null) {
+            if (n.next.value < u.value){
                 u = n;
             }
             n = n.next;
         }
-        return u;
+        Heap_ListNode temp = u.next;
+        u.next = u.next.next;
+        return temp;
     }
 }

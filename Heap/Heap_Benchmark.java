@@ -1,39 +1,115 @@
 public class Heap_Benchmark {
     public static void main(String[] arg) {
-    int fixedSize = 400;
-	int[] sizes = {100, 200, 100, 200, 100, 200, 400, 800, 1600, 3200};
-		System.out.printf("those: # sort through an array of length n, time in ns\n");
-		System.out.printf("#%5s%20s%10s\n", "n", "Singel", "Dubble");
+	int[] sizes = {100, 200, 100, 200, 100, 200, 400, 800, 1600, 3200, 6400, 12800};
+		//--System.out.printf("# time in ns\n");
+		//--System.out.printf("%6s%40s%40s%40s%40s\n", "", "List Add", "List Remove", "Array", "Tree");
+		//--System.out.printf("%6s%20s%20s%20s%20s%20s%20s%20s%20s\n", "n", "Add", "Remove", "Add", "Remove", "Add", "Remove", "Add", "Remove");
 		for ( int n : sizes) {
+			n= n/10;
 			System.gc();
-			int loop = 100;
-			int k = 100;
-			// Pre test
-			System.out.printf("%6d", n);
-			// Singel
-			double min = Double.POSITIVE_INFINITY;
+			int k = 2;
+			
+			Integer[] Arr = Heap_inital.Unsorted2d(n);
+			//Heap_Array array = new Heap_Array();
+			//Heap_Tree tree = new Heap_Tree();
+
+			//--System.out.printf("%6d", n);
+
+			double addMin = Double.POSITIVE_INFINITY;
+			double removeMin = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
-				long t0 = System.nanoTime();
-				for (int m = 0; m < loop; m++) {
-					
+				Heap_ListAdd listAdd = new Heap_ListAdd();
+				long addT0 = System.nanoTime();
+				for (int m = 0; m < Arr.length; m++) {
+					listAdd.add(Arr[m]);
 				}
-				long t1 = System.nanoTime();
-				double t = (t1 - t0);
-				if(t < min) min = t;
+				long addT1 = System.nanoTime();
+				double addT = (addT1 - addT0);
+				if(addT < addMin) addMin = addT;
+				
+				long removeT0 = System.nanoTime();
+				while(!listAdd.empty()) {
+					listAdd.remove();
+				}
+				long removeT1 = System.nanoTime();
+				double removeT = (removeT1 - removeT0);
+				if(removeT < removeMin) removeMin = removeT;
 			}
-			System.out.printf("%15.0f(%3.1f)" , (min/loop),(min/(loop*n*1000)));
-			// Dubble
-			min = Double.POSITIVE_INFINITY;
+			//--System.out.printf("%15.0f(%3.1f)", (addMin), (addMin/(n*10)));
+			//--System.out.printf("%15.0f(%3.1f)", (removeMin), (removeMin/(n*n)));
+
+			addMin = Double.POSITIVE_INFINITY;
+			removeMin = Double.POSITIVE_INFINITY;
 			for (int i = 0; i < k; i++) {
-				long t0 = System.nanoTime();
-				for (int m = 0; m < loop; m++) {
-					
+				Heap_ListRemove listRemove = new Heap_ListRemove();
+				long addT0 = System.nanoTime();
+				for (int m = 0; m < Arr.length; m++) {
+					listRemove.add(Arr[m]);
 				}
-				long t1 = System.nanoTime();
-				double t = (t1 - t0);
-				if(t < min) min = t;
+				long addT1 = System.nanoTime();
+				double addT = (addT1 - addT0);
+				if(addT < addMin) addMin = addT;
+				
+				long removeT0 = System.nanoTime();
+				while(!listRemove.empty()) {
+					listRemove.remove();
+				}
+				long removeT1 = System.nanoTime();
+				double removeT = (removeT1 - removeT0);
+				if(removeT < removeMin) removeMin = removeT;
 			}
-			System.out.printf("%10.0f\n" , (min/loop));
+			//--System.out.printf("%15.0f(%3.1f)", (addMin), (addMin/(n*n)));
+			//--System.out.printf("%15.0f(%3.1f)", (removeMin), (removeMin/(n*10)));
+
+			addMin = Double.POSITIVE_INFINITY;
+			removeMin = Double.POSITIVE_INFINITY;
+			addMin = 0;
+			removeMin = 0;
+			for (int i = 0; i < k; i++) {
+				Heap_Array array = new Heap_Array();
+				long addT0 = System.nanoTime();
+				for (int m = 0; m < Arr.length; m++) {
+					array.add(Arr[m]);
+				}
+				long addT1 = System.nanoTime();
+				double addT = (addT1 - addT0);
+				if(addT < addMin) addMin = addT;
+				
+				long removeT0 = System.nanoTime();
+				while(!array.empty()) {
+					array.remove();
+				}
+				long removeT1 = System.nanoTime();
+				double removeT = (removeT1 - removeT0);
+				if(removeT < removeMin) removeMin = removeT;
+			}
+			//--System.out.printf("%15.0f(%3.1f)", (addMin), (addMin/(n)));
+			//--System.out.printf("%15.0f(%3.1f)", (removeMin), (removeMin/(n)));
+
+			addMin = Double.POSITIVE_INFINITY;
+			removeMin = Double.POSITIVE_INFINITY;
+			addMin = 0;
+			removeMin = 0;
+			/*for (int i = 0; i < k; i++) {
+				Heap_Tree tree = new Heap_Tree();
+				long addT0 = System.nanoTime();
+				for (int m = 0; m < Arr.length; m++) {
+					tree.add(Arr[m]);
+				}
+				long addT1 = System.nanoTime();
+				double addT = (addT1 - addT0);
+				if(addT < addMin) addMin = addT;
+				
+				long removeT0 = System.nanoTime();
+				while(!tree.empty()) {
+					tree.remove();
+				}
+				long removeT1 = System.nanoTime();
+				double removeT = (removeT1 - removeT0);
+				if(removeT < removeMin) removeMin = removeT;
+			}*/
+			//--System.out.printf("%15.0f(%3.1f)", (addMin), (addMin/(n)));
+			//--System.out.printf("%15.0f(%3.1f)\n", (removeMin), (removeMin/(n)));
 		}
     }
 }
