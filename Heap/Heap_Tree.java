@@ -16,10 +16,12 @@ public class Heap_Tree {
     public Heap_TreeNode dequeue() {
         if (root == null) {
             return null;
-        } else {
+        } else if (root.left == null && root.right == null) {
             Heap_TreeNode temp = root;
-            root.remove();
+            root = null;
             return temp;
+        } else {
+            return root.remove();
         }
     }
 

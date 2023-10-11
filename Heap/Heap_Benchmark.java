@@ -1,16 +1,16 @@
 public class Heap_Benchmark {
     public static void main(String[] arg) {
-	int[] sizes = {15/*100, 200, 100, 200, 100, 200, 400, 800, 1600, 3200, 6400*/};
+	int[] sizes = {100, 200, 100, 200, 100, 200, 400, 800, 1600, 3200, 6400, 12800};
 		/*--*/System.out.printf("# time in ns\n");
-		/*--*/System.out.printf("%5s%27s%37s%37s%57s\n", "", "List Add", "List Remove", "Array", "Tree");
-		/*--*/System.out.printf("%4s|%18s%18s|%18s%18s|%18s%18s|%18s%18s%18s%18s\n", "n", "Add", "Remove", "Add", "Remove", "Add", "Remove", "Add", "Remove", "Sum", "Push");
+		/*--*/System.out.printf("%6s%27s%37s%37s%57s\n", "", "List Add", "List Remove", "Array", "Tree");
+		/*--*/System.out.printf("%5s |%18s%18s |%18s%18s |%18s%18s |%18s%18s%18s%18s\n", "n", "Add", "Remove", "Add", "Remove", "Add", "Remove", "Add", "Remove", "Sum", "Push");
 		for ( int n : sizes) {
 			System.gc();
-			int k = 1;
+			int k = 100;
 			
 			int[] Arr = Heap_inital.Unsorted(n);
 
-			/*--*/System.out.printf("%4d|", n);
+			/*--*/System.out.printf("%5d |", n);
 
 			double addMin = Double.POSITIVE_INFINITY;
 			double removeMin = Double.POSITIVE_INFINITY;
@@ -32,8 +32,8 @@ public class Heap_Benchmark {
 				double removeT = (removeT1 - removeT0);
 				if(removeT < removeMin) removeMin = removeT;
 			}
-			/*--*/System.out.printf("%12.0f(%4.1f)", (addMin), (addMin/(n*100)));
-			/*--*/System.out.printf("%12.0f(%4.1f)|", (removeMin), (removeMin/(n*n*10)));
+			/*--*/System.out.printf("%12.0f(%4.1f)", (addMin), (addMin/(n)));
+			/*--*/System.out.printf("%12.0f(%4.1f) |", (removeMin), (removeMin/(n*n)));
 
 			addMin = Double.POSITIVE_INFINITY;
 			removeMin = Double.POSITIVE_INFINITY;
@@ -55,8 +55,8 @@ public class Heap_Benchmark {
 				double removeT = (removeT1 - removeT0);
 				if(removeT < removeMin) removeMin = removeT;
 			}
-			/*--*/System.out.printf("%12.0f(%4.1f)", (addMin), (addMin/(n*n)));
-			/*--*/System.out.printf("%12.0f(%4.1f)|", (removeMin), (removeMin/(n*100)));
+			/*--*/System.out.printf("%12.0f(%4.1f)", (addMin), (addMin/(n*n*0.1)));
+			/*--*/System.out.printf("%12.0f(%4.1f) |", (removeMin), (removeMin/(n)));
 
 			addMin = Double.POSITIVE_INFINITY;
 			removeMin = Double.POSITIVE_INFINITY;
@@ -78,8 +78,8 @@ public class Heap_Benchmark {
 				double removeT = (removeT1 - removeT0);
 				if(removeT < removeMin) removeMin = removeT;
 			}
-			/*--*/System.out.printf("%12.0f(%4.1f)", (addMin), (addMin/(n*Math.log(n)*100)));
-			/*--*/System.out.printf("%12.0f(%4.1f)|", (removeMin), (removeMin/(n*Math.log(n)*100)));
+			/*--*/System.out.printf("%12.0f(%4.1f)", (addMin), (addMin/(n*Math.log(n))));
+			/*--*/System.out.printf("%12.0f(%4.1f) |", (removeMin), (removeMin/(n*n*0.1)));
 
 			addMin = Double.POSITIVE_INFINITY;
 			removeMin = Double.POSITIVE_INFINITY;
@@ -94,17 +94,15 @@ public class Heap_Benchmark {
 				if(addT < addMin) addMin = addT;
 				
 				long removeT0 = System.nanoTime();
-				int num = 0;
 				while(!tree.empty()) {
 					tree.dequeue();
 				}
-				tree.TreePrinter();
 				long removeT1 = System.nanoTime();
 				double removeT = (removeT1 - removeT0);
 				if(removeT < removeMin) removeMin = removeT;
 			}
-			/*--*/System.out.printf("%12.0f(%4.1f)", (addMin), (addMin/(n*100)));
-			/*--*/System.out.printf("%12.0f(%4.1f)", (removeMin), (removeMin/(Math.log(n)*10)));
+			/*--*/System.out.printf("%12.0f(%4.1f)", (addMin), (addMin/(n*10)));
+			/*--*/System.out.printf("%12.0f(%4.1f)", (removeMin), (removeMin/(n*n*0.1)));
 			/*--*/System.out.printf("%12.0f(%4.1f)", (addMin+removeMin), ((addMin+removeMin)/(n*Math.log(n)*10)));
 
 			double min = Double.POSITIVE_INFINITY;
