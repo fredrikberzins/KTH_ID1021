@@ -4,7 +4,7 @@ public class Heap_Array {
     private int size;
 
     public Heap_Array() {
-        this.arr = new Heap_ArrayNode[7];
+        this.arr = new Heap_ArrayNode[3];
         this.firstEmpty = 0;
         this.size = 0;
     }
@@ -32,11 +32,12 @@ public class Heap_Array {
             this.expArr();
         }
         if (arr[0] == null) {
-            arr[0].value = value;
+            arr[0] = new Heap_ArrayNode(value);
             firstEmpty = 1;
+            size++;
             return;
         }
-        arr[firstEmpty].value = value;
+        arr[firstEmpty] = new Heap_ArrayNode(value);
         int indx1 = firstEmpty;
         int indx2 = (indx1-1)/2;
         //--System.out.println("index 1: " + indx1 + " value 1: " + arr[indx1]);
@@ -55,6 +56,7 @@ public class Heap_Array {
                 break;
             }
         }
+        size++;
         //--System.out.println("found magic: " + firstEmpty);
     }
 
@@ -64,24 +66,28 @@ public class Heap_Array {
         }
         Heap_ArrayNode temp = arr[0];
         arr[0] = null;
-        int curr = 0;
+        size--;
+        int index = 0;
 
-        while (curr*2+2 <= size) {
-            if (arr[curr*2+1] == null && arr[curr*2+2] == null) {
-                return null;
-            } else if (arr[curr*2+1] == null) {
-                if (arr[curr].value > arr[curr*2+2].value) {
-                    temp = arr[]
-                }
-            } else if (arr[curr*2+2] == null) {
-                if (arr[curr].value > arr[curr*2+1].value) {
-
-                }
+        while (index*2+2 < arr.length) {
+            if (arr[index*2+1] == null && arr[index*2+2] == null) {
+                break;
+            } else if (arr[index*2+2] == null) {
+                swap(index, index*2+1);
+                index = index*2+1;
+            } else if (arr[index*2+1] == null) {
+                swap(index, index*2+2);
+                index = index*2+2;
             } else {
-
+                if (arr[index*2+1].value <= arr[index*2+2].value) {
+                    swap(index, index*2+1);
+                    index = index*2+1;
+                } else {
+                    swap(index, index*2+2);
+                    index = index*2+2;
+                }
             }
         }
-
         return temp;
     }
 }
