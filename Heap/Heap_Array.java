@@ -1,12 +1,10 @@
 public class Heap_Array {
     private Heap_ArrayNode[] arr;
     private int firstEmpty;
-    private int size;
 
     public Heap_Array() {
         this.arr = new Heap_ArrayNode[3];
         this.firstEmpty = 0;
-        this.size = 0;
     }
 
     public boolean empty() {
@@ -34,30 +32,22 @@ public class Heap_Array {
         if (arr[0] == null) {
             arr[0] = new Heap_ArrayNode(value);
             firstEmpty = 1;
-            size++;
             return;
         }
         arr[firstEmpty] = new Heap_ArrayNode(value);
         int indx1 = firstEmpty;
         int indx2 = (indx1-1)/2;
-        //--System.out.println("index 1: " + indx1 + " value 1: " + arr[indx1]);
-        //--System.out.println("index 2: " + indx2 + " value 2: " + arr[indx2]);
         while (arr[indx1].value < arr[indx2].value) {
             swap(indx1, indx2);
-            //--System.out.println("swaped");
             indx1 = indx2;
             indx2 = (indx1-1)/2;
         }
-        
-        //--System.out.println("looking for magic");
         for (int i = firstEmpty; i < arr.length; i++) {
             if (arr[i] == null) {
                 firstEmpty = i;
                 break;
             }
         }
-        size++;
-        //--System.out.println("found magic: " + firstEmpty);
     }
 
     public Heap_ArrayNode remove() {
@@ -66,7 +56,6 @@ public class Heap_Array {
         }
         Heap_ArrayNode temp = arr[0];
         arr[0] = null;
-        size--;
         int index = 0;
 
         while (index*2+2 < arr.length) {

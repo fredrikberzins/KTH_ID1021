@@ -1,49 +1,76 @@
 class Heap_TreeNode {
-        public Integer prio;
-        private Heap_TreeNode left, right;
+        public int value;
+        public int size;
+        public Heap_TreeNode left, right;
 
-        public Heap_TreeNode(Integer prio){
-            this.prio = prio;
-            this.size = 0;
+        public Heap_TreeNode(int value){
+            this.value = value;
+            this.size = 1;
             this.left = null;
             this.right = null;
         }
 
-        public void add(Integer prio) {
-            if (prio < this.prio) {
-                Integer temp = this.prio;
-                this.prio = prio;
-                prio = temp;
+        public void add(int value) {
+            size++;
+            if (value < this.value) {
+                int temp = this.value;
+                this.value = value;
+                value = temp;
             }
-            if (right != null) {
-                Heap_TreeNode temp = left;
-                right.add(prio);
-                left = right;
-                right = temp;
+            if(left == null){
+                left = new Heap_TreeNode(value);
+                return;
             }
-            else {
-                right = new Heap_TreeNode(prio);
+            if(right == null){
+                right = new Heap_TreeNode(value);
+                return;
+            }
+            if(left.size<right.size){
+                left.add(value);
+            }else{
+                right.add(value);
             }
         }
 
         public Heap_TreeNode remove() {
-            if (right == null) {
-                return left;
-            }
-            else {
-                if (left == null) {
-                    return right;
+            if (right == null && left == null) {
+                return null;
+            } else if (right == null) {
+                this.value = left.value;
+                left = left.remove();
+            } else if (left == null) {
+                this.value = right.value;
+                right = right.remove();
+            } else {
+                if (left.value <= right.value) {
+                    this.value = left.value;
+                    left = left.remove();
+                } else {
+                    this.value = right.value;
+                    right = right.remove();
                 }
-                else {
-                    if (left.prio < right.prio) {
-                        prio = left.prio;
-                        left = left.remove();
-                    } else {
-                        prio = right.prio;
-                        right = right.remove();
-                    }
-                    return this;
-                }
             }
+            return this;
         }
-    }
+
+        public int push(Heap_TreeNode node, int depth) {
+        if (left == null && right == null) {
+            return depth;
+        }
+    
+        Heap_TreeNode smaller = left;
+    
+        if (right != null && right.value < left.value) {
+            smaller = right;
+        }
+    
+        if (node.value <= smaller.value) {
+            return depth;
+        } else {
+            int tempPrio = node.value;
+            node.value = smaller.value;
+            smaller.value = tempPrio;
+            return smaller.push(smaller, depth + 1);
+        }
+    } 
+}
