@@ -5,7 +5,7 @@ public class Heap_Tree {
         return root == null;
     }
 
-    public void enqueue(int value) {
+    public void add(int value) {
         if (root == null) {
             root = new Heap_TreeNode(value);
         } else {
@@ -13,7 +13,7 @@ public class Heap_Tree {
         }
     }
 
-    public Heap_TreeNode dequeue() {
+    public Heap_TreeNode remove() {
         if (root == null) {
             return null;
         } else if (root.left == null && root.right == null) {
@@ -25,7 +25,7 @@ public class Heap_Tree {
         }
     }
 
-    public int Push(int i){
+    public int push(int i){
         if(root == null)
             return 0;
         root.value +=i;
