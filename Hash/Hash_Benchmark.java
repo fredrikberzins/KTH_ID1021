@@ -10,10 +10,10 @@ public class Hash_Benchmark {
 			int loop = 1000;
 			int k = 1000;
 
-            String[][] Str2d = Hash_inital.Unsorted2d(k, loop, "postnummer.csv");
+            String[][] Str2d = Hash_inital.Unsorted2d(k, loop, "Hash/postnummer.csv");
             Integer[][] Int2d = Hash_inital.Convert(Str2d);
-			Hash_String stringArr = new Hash_String("postnummer.csv");
-            Hash_Integer integerArr = new Hash_Integer("postnummer.csv");
+			Hash_String stringArr = new Hash_String("Hash/postnummer.csv");
+            Hash_Integer integerArr = new Hash_Integer("Hash/postnummer.csv");
 
 			System.out.printf("%5d", n);
 

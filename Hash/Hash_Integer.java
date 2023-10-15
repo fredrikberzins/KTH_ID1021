@@ -39,11 +39,14 @@ public class Hash_Integer {
             if (zipCode == data[i].zipCode) {
                 return data[i];
             }
+            i++;
         }
+        return null;
     }
+
     public Hash_IntegerNode binary(Integer zipCode){
         int first = 0;
-        int last = this.max/2;
+        int last = this.max;
         while (true) {
             int index = (int)Math.round((first+last)/2);
             if (data[index].zipCode == zipCode) {
@@ -61,6 +64,5 @@ public class Hash_Integer {
                 return null;
             }
         }
-    }
     }
 }

@@ -26,21 +26,25 @@ public class Hash_String {
             if (zipCode == data[i].zipCode) {
                 return data[i];
             }
+            i++;
         }
+        return null;
     }
     public Hash_StringNode binary(String zipCode){
+        Integer zip = Integer.valueOf(zipCode.replaceAll("\\s",""));
         int first = 0;
         int last = this.max/2;
         while (true) {
             int index = (int)Math.round((first+last)/2);
+            Integer zipValue = Integer.valueOf(data[index].zipCode.replaceAll("\\s",""));
             if (zipCode.equals(data[index].zipCode)) {
                 return data[index];
             }
-            if (data[index].zipCode < zipCode && index < last) {
+            if (zipValue < zip && index < last) {
                 first = index+1;
                 continue;
             }
-            if (data[index].zipCode > zipCode && index > first) {
+            if (zipValue > zip && index > first) {
                 last = index-1;
                 continue;
             }
@@ -48,6 +52,5 @@ public class Hash_String {
                 return null;
             }
         }
-    }
     }
 }
