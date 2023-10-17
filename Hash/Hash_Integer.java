@@ -4,17 +4,16 @@ import java.io.FileReader;
 public class Hash_Integer {
     Hash_IntegerNode[] data;
     int max = 0;
-    
+
     public class Hash_IntegerNode {
         Integer zipCode;
         String name;
         Integer population;
-
+    
         public Hash_IntegerNode(Integer zipCode, String name, Integer population) {
             this.zipCode = zipCode;
             this.name = name;
             this.population = population;
-            max++;
         }
     }
 
@@ -28,18 +27,17 @@ public class Hash_Integer {
                 Integer code = Integer.valueOf(row[0].replaceAll("\\s",""));
                 data[i++] = new Hash_IntegerNode(code, row[1], Integer.valueOf(row[2]));
             }
-            max = i-1;
+            max = i - 1;
         } catch (Exception e) {
             System.out.println(" file " + file + " not found");
         }
     }
+
     public Hash_IntegerNode linear(Integer zipCode) {
-        int i = 0;
-        while(data[i] != null) {
-            if (zipCode == data[i].zipCode) {
+        for (int i = 0; i < data.length; i++) {
+            if (zipCode.equals(data[i].zipCode)) {
                 return data[i];
             }
-            i++;
         }
         return null;
     }
@@ -47,17 +45,17 @@ public class Hash_Integer {
     public Hash_IntegerNode binary(Integer zipCode){
         int first = 0;
         int last = this.max;
-        while (true) {
-            int index = (int)Math.round((first+last)/2);
-            if (data[index].zipCode == zipCode) {
+        while(true) {
+            int index = (first+last)/2;
+
+            int compare = zipCode.compareTo(data[index].zipCode);
+            if( compare == 0) {
                 return data[index];
-            }
-            if (data[index].zipCode < zipCode && index < last) {
-                first = index+1;
+            } else if (compare > 0 && index < last) {
+                first = index + 1;
                 continue;
-            }
-            if (data[index].zipCode > zipCode && index > first) {
-                last = index-1;
+            } else if (compare < 0 && index > first) {
+                last = index - 1;
                 continue;
             }
             if (2 >= (last - first)) {

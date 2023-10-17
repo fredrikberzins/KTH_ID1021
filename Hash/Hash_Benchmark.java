@@ -1,75 +1,70 @@
 public class Hash_Benchmark {
     public static void main(String[] arg) {
-	long tS = System.nanoTime();
-	int[] sizes = {100, 200, 100, 200, 400, 800, 1600, 3200, 6400, 12800, 25600};
-		System.out.printf("those: # searching through an array of length n, time in ns\n");
-		System.out.printf("#%4s%22s%30s\n", "", "String", "Integer");
-		System.out.printf("#%4s%15s%15s%15s%15s\n", "n", "linear", "binary", "linear", "binary");
-		for ( int n : sizes) {
+	int[] sizesInt = {11115, 24494, 45732, 98499, 11115, 45732, 98499, 11115, 45732, 98499};
+	String[] sizesStr = {"111 15", "244 94", "457 32", "984 99", "111 15", "457 32", "984 99", "111 15", "457 32", "984 99"};
+		/*--*/System.out.printf("those: # searching through an array of length n, time in ns\n");
+		/*--*/System.out.printf("#%7s%22s%30s%23s\n", "", "String", "Integer", "Index");
+		/*--*/System.out.printf("#%7s%15s%15s%15s%15s%15s\n", "n", "linear", "binary", "linear", "binary", "lookup");
+		for (int n  = 0; n < sizesInt.length; n++) {
 			System.gc();
 			int loop = 1000;
-			int k = 1000;
 
-            String[][] Str2d = Hash_inital.Unsorted2d(k, loop, "Hash/postnummer.csv");
-            Integer[][] Int2d = Hash_inital.Convert(Str2d);
 			Hash_String stringArr = new Hash_String("Hash/postnummer.csv");
             Hash_Integer integerArr = new Hash_Integer("Hash/postnummer.csv");
+            Hash_Index indexArr = new Hash_Index("Hash/postnummer.csv");
 
-			System.out.printf("%5d", n);
+			/*--*/System.out.printf("%8d", sizesInt[n]);
 
 			Double min = Double.POSITIVE_INFINITY;
-			for (int i = 0; i < k; i++) {
-				long t0 = System.nanoTime();
-				for (int m = 0; m < loop; m++) {
-                    stringArr.linear(Str2d[i][m]);
-				}
-				long t1 = System.nanoTime();
-				double t = (t1 - t0);
-				if (t < min) min = t;
+			long t0 = System.nanoTime();
+			for (int i = 0; i < loop; i++) {
+                stringArr.linear(sizesStr[n]);
 			}
-			System.out.printf("%10.0f(%3.1f)" , (min/(loop)),((min/(loop))/(10*n*Math.log(n))));
+			long t1 = System.nanoTime();
+			double t = (t1 - t0);
+			if (t < min) min = t;
+			/*--*/System.out.printf("%15.0f" , (min/(loop)));
 
 			min = Double.POSITIVE_INFINITY;
-			for (int i = 0; i < k; i++) {
-				long t0 = System.nanoTime();
-				for (int m = 0; m < loop; m++) {
-                    stringArr.binary(Str2d[i][m]);
-				}
-				long t1 = System.nanoTime();
-				double t = (t1 - t0);
-				if (t < min) min = t;
-				
+			t0 = System.nanoTime();
+			for (int i = 0; i < loop; i++) {
+                stringArr.binary(sizesStr[n]);
 			}
-            System.out.printf("%10.0f(%3.1f)" , (min/(loop)),((min/(loop))/(10*n*Math.log(n))));
+			t1 = System.nanoTime();
+			t = (t1 - t0);
+			if (t < min) min = t;
+            /*--*/System.out.printf("%15.0f" , (min/(loop)));
 
 			min = Double.POSITIVE_INFINITY;
-			for (int i = 0; i < k; i++) {
-				long t0 = System.nanoTime();
-				for (int m = 0; m < loop; m++) {
-                    integerArr.linear(Int2d[i][m]);
-				}
-				long t1 = System.nanoTime();
-				double t = (t1 - t0);
-				if (t < min) min = t;
-				
+			t0 = System.nanoTime();
+			for (int i = 0; i < loop; i++) {
+                integerArr.linear(sizesInt[n]);
 			}
-            System.out.printf("%10.0f(%3.1f)" , (min/(loop)),((min/(loop))/(10*n*Math.log(n))));
+			t1 = System.nanoTime();
+			t = (t1 - t0);
+			if (t < min) min = t;
+            /*--*/System.out.printf("%15.0f" , (min/(loop)));
 
 			min = Double.POSITIVE_INFINITY;
-			for (int i = 0; i < k; i++) {
-				long t0 = System.nanoTime();
-				for (int m = 0; m < loop; m++) {
-                    integerArr.binary(Int2d[i][m]);
-				}
-				long t1 = System.nanoTime();
-				double t = (t1 - t0);
-				if (t < min) min = t;
-				
+			t0 = System.nanoTime();
+			for (int i = 0; i < loop; i++) {
+                integerArr.binary(sizesInt[n]);
 			}
-			System.out.printf("%10.0f(%3.1f)\n" , (min/(loop)),((min/(loop))/(10*n*Math.log(n))));
+			t1 = System.nanoTime();
+			t = (t1 - t0);
+			if (t < min) min = t;
+			/*--*/System.out.printf("%15.0f" , (min/(loop)));
+
+			min = Double.POSITIVE_INFINITY;
+			min = Double.POSITIVE_INFINITY;
+			t0 = System.nanoTime();
+			for (int i = 0; i < loop; i++) {
+                indexArr.lookup(sizesInt[n]);
+			}
+			t1 = System.nanoTime();
+			t = (t1 - t0);
+			if (t < min) min = t;
+			/*--*/System.out.printf("%15.0f\n" , (min/(loop)));
 		}
-		long tE = System.nanoTime();
-		double tot = (tE - tS);
-		System.out.println(tot);
     }
 }
