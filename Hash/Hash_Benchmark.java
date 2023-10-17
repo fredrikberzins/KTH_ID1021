@@ -1,13 +1,13 @@
 public class Hash_Benchmark {
     public static void main(String[] arg) {
-	int[] sizesInt = {11115, 24494, 45732, 98499, 11115, 45732, 98499, 11115, 45732, 98499};
-	String[] sizesStr = {"111 15", "244 94", "457 32", "984 99", "111 15", "457 32", "984 99", "111 15", "457 32", "984 99"};
+	int[] sizesInt = {11115, 24494, 45732, 70235, 98499, 11115, 24494, 45732, 70235, 98499, 11115, 24494, 45732, 70235, 98499};
+	String[] sizesStr = {"111 15", "244 94", "457 32", "702 35", "984 99", "111 15", "244 94", "457 32", "702 35", "984 99", "111 15", "244 94", "457 32", "702 35", "984 99"};
 		/*--*/System.out.printf("those: # searching through an array of length n, time in ns\n");
 		/*--*/System.out.printf("#%7s%22s%30s%23s\n", "", "String", "Integer", "Index");
 		/*--*/System.out.printf("#%7s%15s%15s%15s%15s%15s\n", "n", "linear", "binary", "linear", "binary", "lookup");
 		for (int n  = 0; n < sizesInt.length; n++) {
 			System.gc();
-			int loop = 1000;
+			int loop = 100000;
 
 			Hash_String stringArr = new Hash_String("Hash/postnummer.csv");
             Hash_Integer integerArr = new Hash_Integer("Hash/postnummer.csv");
