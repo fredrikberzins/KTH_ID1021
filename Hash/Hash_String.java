@@ -2,15 +2,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class Hash_String {
-    Hash_StringNode[] data;
+    Node[] data;
     int max = 0;
 
-    public class Hash_StringNode {
+    public class Node {
         String zipCode;
         String name;
         Integer population;
     
-        public Hash_StringNode(String zipCode, String name, Integer population) {
+        public Node(String zipCode, String name, Integer population) {
             this.zipCode = zipCode;
             this.name = name;
             this.population = population;
@@ -18,13 +18,13 @@ public class Hash_String {
     }
 
     public Hash_String(String file) {
-        data = new Hash_StringNode[10000];
+        data = new Node[10000];
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             int i = 0;
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
-                data[i++] = new Hash_StringNode(row[0], row[1], Integer.valueOf(row[2]));
+                data[i++] = new Node(row[0], row[1], Integer.valueOf(row[2]));
             }
             max = i-1;
         } catch (Exception e) {
@@ -32,7 +32,7 @@ public class Hash_String {
         }
     }
     
-    public Hash_StringNode linear(String zipCode) {
+    public Node linear(String zipCode) {
         for (int i = 0; i < data.length; i++) {
             if (zipCode.equals(data[i].zipCode)) {
                 return data[i];
@@ -41,7 +41,7 @@ public class Hash_String {
         return null;
     }
 
-    public Hash_StringNode binary(String zipCode){
+    public Node binary(String zipCode){
         int first = 0;
         int last = this.max;
         while(true) {

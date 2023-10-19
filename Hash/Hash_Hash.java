@@ -1,7 +1,7 @@
 public class Hash_Hash {
     int R = 31;
 
-    public int hashInteger(Integer key, int mod) {
+    public static int hashInteger(Integer key, int mod) {
         return key % mod;
     }
 

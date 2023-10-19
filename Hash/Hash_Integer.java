@@ -2,15 +2,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class Hash_Integer {
-    Hash_IntegerNode[] data;
+    Node[] data;
     int max = 0;
 
-    public class Hash_IntegerNode {
+    public class Node {
         Integer zipCode;
         String name;
         Integer population;
     
-        public Hash_IntegerNode(Integer zipCode, String name, Integer population) {
+        public Node(Integer zipCode, String name, Integer population) {
             this.zipCode = zipCode;
             this.name = name;
             this.population = population;
@@ -18,14 +18,14 @@ public class Hash_Integer {
     }
 
     public Hash_Integer(String file) {
-        data = new Hash_IntegerNode[10000];
+        data = new Node[10000];
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             int i = 0;
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
                 Integer code = Integer.valueOf(row[0].replaceAll("\\s",""));
-                data[i++] = new Hash_IntegerNode(code, row[1], Integer.valueOf(row[2]));
+                data[i++] = new Node(code, row[1], Integer.valueOf(row[2]));
             }
             max = i - 1;
         } catch (Exception e) {
@@ -33,7 +33,7 @@ public class Hash_Integer {
         }
     }
 
-    public Hash_IntegerNode linear(Integer zipCode) {
+    public Node linear(Integer zipCode) {
         for (int i = 0; i < data.length; i++) {
             if (zipCode.equals(data[i].zipCode)) {
                 return data[i];
@@ -42,7 +42,7 @@ public class Hash_Integer {
         return null;
     }
 
-    public Hash_IntegerNode binary(Integer zipCode){
+    public Node binary(Integer zipCode){
         int first = 0;
         int last = this.max;
         while(true) {
