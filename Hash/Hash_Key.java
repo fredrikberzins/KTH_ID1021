@@ -4,7 +4,7 @@ import java.io.FileReader;
 public class Hash_Key {
     Node[] data;
     Integer[] keys;
-    int mod = 1300;
+    int mod = 8123;
     int max = 0;
 
     public class Node {
@@ -24,38 +24,38 @@ public class Hash_Key {
 
     public Hash_Key(String file) {
         data = new Node[mod];
-        keys = new Integer[mod];
+        keys = new Integer[100000];
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             int i = 0;
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
                 Integer code = Integer.valueOf(row[0].replaceAll("\\s",""));
-                if (data[Hash_Hash.hashInteger(code, mod)] == null) {
-                    data[Hash_Hash.hashInteger(code, mod)] = new Node(code, row[1], Integer.valueOf(row[2]));
-                    i++;
-                } else {
-                    Node curr = data[Hash_Hash.hashInteger(code, mod)];
-                    while (curr != null) {
+                keys[i++] = code;
+                int index = Hash_Hash.hashInteger(code, mod);
+                if (data[index] == null) {
+                    data[index] = new Node(code, row[1], Integer.valueOf(row[2]));
+                }
+                else {
+                    Node curr = data[index];
+                    while (curr.next != null) {
                         curr = curr.next;
                     }
                     curr = new Node(code, row[1], Integer.valueOf(row[2]));
                 }
             }
-            max = i;
+            max = i - 1;
             br.close();
         } catch (Exception e) {
             System.out.print("\t file " + file + " not found Key");
         }
     }
 
+
     public void collisions(int mod) {
         int[] data = new int[mod];
         int[] cols = new int[10];
         for (int i = 0; i < max; i++) {
-            if (keys[i] == null) {
-                break;
-            }
             Integer index = keys[i] % mod;
             cols[data[index]]++;
             data[index]++;
@@ -68,14 +68,14 @@ public class Hash_Key {
     }
 
     public Node lookup(Integer key) {
-        int index = Hash_Hash.hashInteger(key, mod);
-        Node current = data[index];
+        int index = Hash_Hash.hashInteger(key, this.mod);
+        Node current = this.data[index];
         while (current != null) {
             if (current.zipCode.equals(key)) {
                 return current;
             }
             current = current.next;
         }
-        return null; // Key not found.
+        return null;
     }
 }
