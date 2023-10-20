@@ -14,7 +14,7 @@ public class Hash_Benchmark {
             Hash_Integer integerArr = new Hash_Integer("Hash/postnummer.csv");
             Hash_Index indexArr = new Hash_Index("Hash/postnummer.csv");
             Hash_Key keyArr = new Hash_Key("Hash/postnummer.csv");
-			//--Hash_Key collisionsArr = new Hash_Key("Hash/postnummer.csv");
+            Hash_Key collisionsArr = new Hash_Key("Hash/postnummer.csv");
 
 			/*--*/System.out.printf("%8d", sizesInt[n]);
 
@@ -91,7 +91,7 @@ public class Hash_Benchmark {
 			t = (t1 - t0);
 			if (t < min) min = t;
 			/*--*/System.out.printf("%15.0f\n" , (min/(loop)));
-			//--collisionsArr.collisions(collisionsArr.mod);
+			collisionsArr.collisions(collisionsArr.mod);
 		}
     }
 }

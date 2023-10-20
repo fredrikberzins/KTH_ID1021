@@ -27,8 +27,9 @@ public class Hash_String {
                 data[i++] = new Node(row[0], row[1], Integer.valueOf(row[2]));
             }
             max = i-1;
+            br.close();
         } catch (Exception e) {
-            System.out.println(" file " + file + " not found");
+            System.out.print("\t file " + file + " not found String");
         }
     }
     

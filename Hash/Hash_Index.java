@@ -25,8 +25,9 @@ public class Hash_Index {
                 Integer code = Integer.valueOf(row[0].replaceAll("\\s",""));
                 data[code] = new Node(code, row[1], Integer.valueOf(row[2]));
             }
+            br.close();
         } catch (Exception e) {
-            System.out.println(" file " + file + " not found");
+            System.out.print("\t file " + file + " not found Index");
         }
     }
 

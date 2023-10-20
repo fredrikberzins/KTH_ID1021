@@ -28,8 +28,9 @@ public class Hash_Integer {
                 data[i++] = new Node(code, row[1], Integer.valueOf(row[2]));
             }
             max = i - 1;
+            br.close();
         } catch (Exception e) {
-            System.out.println(" file " + file + " not found");
+            System.out.print("\t file " + file + " not found Integer");
         }
     }
 
