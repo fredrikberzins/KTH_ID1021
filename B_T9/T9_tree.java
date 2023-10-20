@@ -99,6 +99,7 @@ public class T9_tree {
         if (curr.valid) {
             results.add(currWord);
         }
+        
         String[] letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "v", "x", "y", "z", "å", "ä", "ö"};
 
         for (int i = 0; i < curr.next.length; i++) {
