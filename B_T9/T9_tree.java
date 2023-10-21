@@ -28,12 +28,12 @@ public class T9_tree {
                     break;
                 }
             }
-            if (index == -1) {
+            if (index == -1)
                 return;
-            }
-            if (curr.next[index] == null) {
+                
+            if (curr.next[index] == null)
                 curr.next[index] = new Node();
-            }
+
             add(curr.next[index], word, (wordIndx + 1));
         }
     }
@@ -96,9 +96,8 @@ public class T9_tree {
     }
 
     private void searchBranch(Node curr, String currWord, ArrayList<String> results) {
-        if (curr.valid) {
+        if (curr.valid)
             results.add(currWord);
-        }
         
         String[] letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "v", "x", "y", "z", "å", "ä", "ö"};
 
