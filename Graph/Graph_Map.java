@@ -4,11 +4,9 @@ import java.io.FileReader;
 public class Graph_Map {
     private Graph_City[] cities;
     private final int mod = 541;
-    private int size;
 
     public Graph_Map(String file) {
         cities = new Graph_City[mod];
-        size = 0;
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
@@ -26,18 +24,18 @@ public class Graph_Map {
     }
 
     private Integer hash(String name) {
-        return Math.floorMod(name.hashCode(), mod);
-    }
-
-    private Integer size() {
-        return this.size;
+        //return Math.floorMod(name.hashCode(), mod);
+        int hash = 0;
+        for (int i = 0; i < name.length(); i++) {
+            hash = (hash*31 % mod) + name.charAt(i);
+        }
+        return hash % mod;
     }
 
     public Graph_City lookup(String name) {
         int indx = hash(name);
         while (true) {
             if (cities[indx] == null) {
-                size++;
                 Graph_City city = new Graph_City(name);
                 cities[indx] = city;
                 return city;

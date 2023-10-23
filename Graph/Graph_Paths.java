@@ -1,9 +1,9 @@
 public class Graph_Paths {
-    Graph_City[] path;
-    int stackPointer;
+    static Graph_City[] path;
+    static int stackPointer;
 
     public Graph_Paths() {
-        path = new Graph_City[52];
+        path = new Graph_City[54];
         stackPointer = 0;
     }
 
@@ -22,7 +22,7 @@ public class Graph_Paths {
         for (Graph_Connection conn : from.neighbors) {
             Integer distance = shortest(conn.city, to);
             if (distance != null) {
-                if ((shortest == null) || shortest > distance +conn.distance) {
+                if ((shortest == null) || shortest > (distance + conn.distance)) {
                     shortest = distance + conn.distance;
                 }
             }
@@ -30,5 +30,4 @@ public class Graph_Paths {
         path[stackPointer--] = null;
         return shortest;
     }
-
 }

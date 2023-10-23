@@ -9,8 +9,8 @@ public class Graph_City {
         this.neighbors = new ArrayList();
     }
 
-    public void connect(Graph_City to, Integer distance) {
-
+    public void connect(Graph_City neighbor, Integer distance) {
+        neighbors.add(new Graph_Connection(neighbor, distance));
     }
 
     public String getName() {
