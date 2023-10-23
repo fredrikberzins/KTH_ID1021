@@ -1,94 +1,95 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-
 public class Graph {
 
-        private Integer hash(String name) {
-        int hash = 0;
-        for (int i = 0; i < name.length(); i++) {
-            hash = (hash*31 % mod) + name.charAt(i);
-        }
-        return hash % mod;
-    }
-
-    public class Map {
-        private City[] cities;
-        private final int mod = 541;
-        public Map(String file) {
-        cities = new City[mod];
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-            //--
+    private static Integer shortestNaive(Graph_City from, Graph_City to, Integer max) {
+        if (max < 0)
+            return null;
+        if (from == to)
+            return 0;
+        Integer shortest = null;
+        for (Graph_Connection conn : from.neighbors) {
+            Integer distance = shortestNaive(conn.city, to, max - conn.distance);
+            if (distance != null) {
+                if ((shortest == null) || shortest > distance +conn.distance) {
+                    shortest = distance + conn.distance;
+                }
             }
-        } catch (Exception e) {
-            System.out.println(" file " + file + " not found or corrupt");
         }
-        }
-        //--
+        return shortest;
     }
 
-    //--
-
-    public static void main(String[] args) {
-        Map map = new Map("trains.csv");
-        String from = args[0];
-        String to = args[1];
-        Integer max = Integer.valueOf(args[2]);
-        long t0 = System.nanoTime();
-        Integer dist = shortest(map.lookup(from), map.lookup(to), max);
-        long time = (System.nanoTime() - t0)/1_000_000;
-        System.out.println("shortest: " + dist + " min (" + time + " ms)");
+    private static Integer shortestMovingMax(Graph_City from, Graph_City to, Integer max) {
+        if (max < 0)
+            return null;
+        if (from == to)
+            return 0;
+        Integer shortest = null;
+        for (Graph_Connection conn : from.neighbors) {
+            Integer distance = shortestMovingMax(conn.city, to, max - conn.distance);
+            if (distance != null) {
+                if ((shortest == null) || shortest > distance +conn.distance) {
+                    shortest = distance + conn.distance;
+                    max = shortest;
+                }
+            }
+        }
+        return shortest;
     }
 
-    public static void main(String[] arg) {
+    public void main(String[] arg) {
+        Graph_Map map = new Graph_Map("trains.csv");
+        Integer[] max = {500,500,500,500,500,500,500,500,500};
+        Integer[] distance = new Integer[9];
 		System.out.printf("those: # sort through an array of length n, time in ns\n");
 		System.out.printf("%15s%15s%15s%15s%15s%15s%15s%15s%15s\n", "Mal-Göt", "Göt-Sthm", "Mal-Sthm", "Sthm-Sund", "Sthm-Umeå", "Göt-Sund", "Sund-Umeå", "Umeå-Göt", "Göt-Umeå");
         System.gc();
         
         long t0 = System.nanoTime();
-        shortest();
-        double t = (System.nanoTime() - t0);
+        distance[0] = shortestNaive(map.lookup("Malmö"), map.lookup("Göteborg"), max[0]);
+        double t = (System.nanoTime() - t0)/1000;
         System.out.printf("%15.0f" , (t));
 
         t0 = System.nanoTime();
-        shortest();
-        t = (System.nanoTime() - t0);
+        distance[1] = shortestNaive(map.lookup("Göteborg"), map.lookup("Stockholm"), max[1]);
+        t = (System.nanoTime() - t0)/1000;
         System.out.printf("%15.0f" , (t));
 
         t0 = System.nanoTime();
-        shortest();
-        t = (System.nanoTime() - t0);
+        distance[2] = shortestNaive(map.lookup("Malmö"), map.lookup("Stockholm"), max[2]);
+        t = (System.nanoTime() - t0)/1000;
         System.out.printf("%15.0f" , (t));
         
         t0 = System.nanoTime();
-        shortest();
-        t = (System.nanoTime() - t0);
+        distance[3] = shortestNaive(map.lookup("Stockholm"), map.lookup("Sundsvall"), max[3]);
+        t = (System.nanoTime() - t0)/1000;
         System.out.printf("%15.0f" , (t));
     
         t0 = System.nanoTime();
-        shortest();
-        t = (System.nanoTime() - t0);
+        distance[4] = shortestNaive(map.lookup("Stockholm"), map.lookup("Umeå"), max[4]);
+        t = (System.nanoTime() - t0)/1000;
         System.out.printf("%15.0f" , (t));
         
         t0 = System.nanoTime();
-        shortest();
-        t = (System.nanoTime() - t0);
+        distance[5] = shortestNaive(map.lookup("Göteborg"), map.lookup("Sundsvall"), max[5]);
+        t = (System.nanoTime() - t0)/1000;
         System.out.printf("%15.0f" , (t));
         
         t0 = System.nanoTime();
-        shortest();
-        t = (System.nanoTime() - t0);
+        distance[6] = shortestNaive(map.lookup("Sundsvall"), map.lookup("Umeå"), max[6]);
+        t = (System.nanoTime() - t0)/1000;
         System.out.printf("%15.0f" , (t));
 
         t0 = System.nanoTime();
-        shortest();
-        t = (System.nanoTime() - t0);
+        distance[7] = shortestNaive(map.lookup("Umeå"), map.lookup("Göteborg"), max[7]);
+        t = (System.nanoTime() - t0)/1000;
         System.out.printf("%15.0f\n" , (t));
         
         t0 = System.nanoTime();
-        shortest();
-        t = (System.nanoTime() - t0);
+        distance[8] = shortestNaive(map.lookup("Göteborg"), map.lookup("Umeå"), max[8]);
+        t = (System.nanoTime() - t0)/1000;
         System.out.printf("%15.0f\n" , (t));
+
+        for(Integer dis : distance) {
+            System.out.printf("%15.0f\n" , (dis));
+        }
     }
 }
