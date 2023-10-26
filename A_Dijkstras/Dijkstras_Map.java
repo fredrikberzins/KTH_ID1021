@@ -9,6 +9,7 @@ public class Dijkstras_Map {
     public Dijkstras_Map(String file) {
         cities = new Dijkstras_City[mod];
 
+        /*
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -21,7 +22,11 @@ public class Dijkstras_Map {
             }
         } catch (Exception e) {
             System.out.println(" file " + file + " not found or corrupt");
-        }
+        }*/
+    }
+
+    public Integer size() {
+        return this.size;
     }
 
     private Integer hash(String name) {
@@ -36,8 +41,9 @@ public class Dijkstras_Map {
         int indx = hash(name);
         while (true) {
             if (cities[indx] == null) {
-                Dijkstras_City city = new Dijkstras_City(name, size);
-                size++;
+                Dijkstras_City city = new Dijkstras_City(name, this.size);
+
+                this.size++;
                 cities[indx] = city;
                 return city;
             }

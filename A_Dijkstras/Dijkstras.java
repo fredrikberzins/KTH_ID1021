@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 public class Dijkstras {
@@ -36,7 +35,8 @@ public class Dijkstras {
     }
 
     public Dijkstras(Dijkstras_Map map) {
-        done = new Path[Dijkstras_Map.size()];
+        System.out.println(map.size());
+        done = new Path[map.size()];
         queue = new PriorityQueue<Path>();
     }
 
@@ -70,19 +70,22 @@ public class Dijkstras {
 
     public void shortest(Dijkstras_City destination) {
         while (!queue.isEmpty()) {
+
             Path entr = queue.remove();
             Dijkstras_City city = entr.city;
-
+            System.out.println(city.id);
             if (done[city.id] == null) {
                 done[city.id] = entr;
+
                 if (city == destination) {
                     break;
                 }
+
                 Integer sofar = entr.distance;
-                for(Dijkstras_Connection conn : city.neighbors) {
+                for (Dijkstras_Connection conn : city.neighbors) {
                     Dijkstras_City to = conn.city;
                     if (done[to.id] == null) {
-                        Path ex = new Path(to, city, sofar+conn.distance);
+                        Path ex = new Path(to, city, sofar + conn.distance);
                         queue.add(ex);
                     }
                 }
