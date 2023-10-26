@@ -1,19 +1,19 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-public class Dijkstra_Map {
-    private Dijkstra_City[] cities;
+public class Dijkstras_Map {
+    private Dijkstras_City[] cities;
     private final int mod = 1667;
 
-    public Dijkstra_Map(String file) {
-        cities = new Dijkstra_City[mod];
+    public Dijkstras_Map(String file) {
+        cities = new Dijkstras_City[mod];
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
-                Dijkstra_City one = lookup(row[0]);
-                Dijkstra_City two = lookup(row[1]);
+                Dijkstras_City one = lookup(row[0]);
+                Dijkstras_City two = lookup(row[1]);
                 Integer distance = Integer.valueOf(row[2]);
                 one.connect(two, distance);
                 two.connect(one, distance);
@@ -31,11 +31,11 @@ public class Dijkstra_Map {
         return hash % mod;
     }
 
-    public Dijkstra_City lookup(String name) {
+    public Dijkstras_City lookup(String name) {
         int indx = hash(name);
         while (true) {
             if (cities[indx] == null) {
-                Dijkstra_City city = new Dijkstra_City(name);
+                Dijkstras_City city = new Dijkstras_City(name);
                 cities[indx] = city;
                 return city;
             }
