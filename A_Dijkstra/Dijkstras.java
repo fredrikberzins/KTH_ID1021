@@ -2,6 +2,15 @@ public class Dijkstras {
     public static void main(String[] arg) {
         Dijkstras_Map map = new Dijkstras_Map("A_Dijksta/europe.csv");
         String[][] route = {
+            {"Malmö", "Göteborg"},
+            {"Göteborg", "Stockholm"},
+            {"Malmö", "Stockholm"},
+            {"Stockholm", "Sundsvall"},
+            {"Stockholm", "Umeå"},
+            {"Göteborg", "Sundsvall"},
+            {"Sundsvall", "Umeå"},
+            {"Umeå", "Göteborg"},
+            {"Göteborg", "Umeå"}
         };
         Integer[] distance = new Integer[9];
 
@@ -11,9 +20,9 @@ public class Dijkstras {
 
         for (int i = 0; i < route.length; i++) {
             long t0 = System.nanoTime();
-            distance[i] = Dijkstras_Path.dijkstrasSearch();
+            distance[i] = Dijkstras_Path.dijkstrasSearch(map.lookup(route[i][0]), map.lookup(route[i][1]));
             double t = (System.nanoTime() - t0);
-            System.out.printf("%25.3f|", (t/1_000_000));
+            System.out.printf("%25.3f|", (t/1000));
             System.gc();
         }
         System.out.println();
