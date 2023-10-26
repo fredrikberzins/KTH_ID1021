@@ -9,7 +9,6 @@ public class Dijkstras_Map {
     public Dijkstras_Map(String file) {
         cities = new Dijkstras_City[mod];
 
-        /*
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -22,7 +21,7 @@ public class Dijkstras_Map {
             }
         } catch (Exception e) {
             System.out.println(" file " + file + " not found or corrupt");
-        }*/
+        }
     }
 
     public Integer size() {

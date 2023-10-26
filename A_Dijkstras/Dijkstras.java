@@ -1,12 +1,13 @@
+import java.util.ArrayList;
 import java.util.PriorityQueue;
+import java.util.Stack;
 
 public class Dijkstras {
-    private Path[] done;
+    public static Path[] done;
     private PriorityQueue<Path> queue;
-    private Dijkstras_Map map;
 
     public class Path implements Comparable<Path>{
-        private Dijkstras_City city;
+        public Dijkstras_City city;
         private Dijkstras_City previous;
         private Integer distance;
 
@@ -35,12 +36,11 @@ public class Dijkstras {
     }
 
     public Dijkstras(Dijkstras_Map map) {
-        System.out.println(map.size());
         done = new Path[map.size()];
         queue = new PriorityQueue<Path>();
     }
 
-    public Integer distance(Dijkstras_City city) {
+    public static Integer distance(Dijkstras_City city) {
         if (city != null && done[city.id] != null) {
             return done[city.id].distance;
         } else {
@@ -62,10 +62,23 @@ public class Dijkstras {
         return done[city.id].previous;
     }
 
+    public static ArrayList<Dijkstras_City> getPath(Dijkstras_City from, Dijkstras_City to) {
+        ArrayList<Dijkstras_City> path = new ArrayList<Dijkstras_City>();
+        Dijkstras_City curr = to;
+        while (curr != from) {
+            path.add(curr);
+            curr = done[curr.id].previous;
+
+        }
+        path.add(from);
+        return path;
+    }
+
     public void search(Dijkstras_City from, Dijkstras_City destination) {
         Path ex = new Path(from);
         queue.add(ex);
         shortest(destination);
+
     }
 
     public void shortest(Dijkstras_City destination) {
@@ -73,7 +86,6 @@ public class Dijkstras {
 
             Path entr = queue.remove();
             Dijkstras_City city = entr.city;
-            System.out.println(city.id);
             if (done[city.id] == null) {
                 done[city.id] = entr;
 

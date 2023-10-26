@@ -1,0 +1,51 @@
+those: # sort through an array of length n, time in ms
+      Malmö-   Göteborg|  8,20|   19|  153|  Malmö, Lund, Åstorp, Halmstad, Varberg, Göteborg, 
+   Göteborg-  Stockholm| 25,80|   37|  211|  Göteborg, Herrljunga, Falköping, Skövde, Hallsberg, Katrineholm, Södertälje, Stockholm,
+       Umeå-   Göteborg| 20,40|   45|  705|  Umeå, Sundsvall, Gävle, Storvik, Avesta, Fagersta, Frövi, Örebro, Hallsberg, Skövde, Falköping, Herrljunga, Göteborg, 
+   Göteborg-       Umeå| 30,00|   65|  705|  Göteborg, Herrljunga, Falköping, Skövde, Hallsberg, Örebro, Frövi, Fagersta, Avesta, Storvik, Gävle, Sundsvall, Umeå,
+     Berlin-  Stockholm| 26,70|   72|  697|  Berlin, Hamburg, Köpenhamn, Malmö, Lund, Hässleholm, Alvesta, Nässjö, Mjölby, Linköping, Norrköping, Södertälje, Stockholm,
+     Berlin-  Seinäjoki| 45,20|  130| 1557|  Berlin, Hamburg, Köpenhamn, Malmö, Lund, Hässleholm, Alvesta, Nässjö, Mjölby, Linköping, Norrköping, Södertälje, Stockholm, Uppsala, Gävle, Sundsvall, Umeå, Vasa, Seinäjoki,
+     Berlin-   Bukarest| 34,70|  131| 1557|  Berlin, Leipzig, Dresden, Prag, Wien, Budapest, Bukarest, 
+     Berlin-   Valencia| 30,90|  113| 1063|  Berlin, Hannover, Köln, Liege, Bryssel, Lille, Paris, Lyon, Montpellier, Barcelona, Valencia,
+     Berlin- Manchester| 29,40|   80|  728|  Berlin, Hannover, Köln, Liege, Bryssel, Lille, London, Leeds, Manchester,
+     Berlin-       Bari| 31,80|  119| 1246|  Berlin, Hannover, Göttingen, Nürnberg, München, Innsbruck, Verona, Milano, Bologna, Pescara, Foggia, Bari,
+     Berlin-     Berlin|  8,00|    1|    0|  Berlin,
+     Berlin-        Rom| 36,10|  110| 1039|  Berlin, Hannover, Göttingen, Nürnberg, München, Innsbruck, Verona, Milano, Bologna, Florens, Rom, 
+     Berlin-      Paris| 19,10|   35|  477|  Berlin, Hannover, Köln, Liege, Bryssel, Lille, Paris,
+     Berlin-     London| 17,50|   37|  497|  Berlin, Hannover, Köln, Liege, Bryssel, Lille, London,
+     Berlin-     Gdansk| 14,90|   29|  454|  Berlin, Warsawa, Gdansk,
+     Berlin-       Prag| 16,30|   10|  259|  Berlin, Leipzig, Dresden, Prag,
+
+\textbf{Malmö}& \textbf{Göteborg}& \text{(Mal/Göt)}\\
+\textbf{Göteborg}& \textbf{Stockholm}& \text{(Göt/Sto)}\\
+\textbf{Umeå}& \textbf{Göteborg}& \text{(Ume/Göt)}\\
+\textbf{Göteborg}& \textbf{Umeå}& \text{(Göt/Ume)}\\
+\textbf{Berlin}& \textbf{Berlin}& \text{(Ber/Ber)}\\
+\textbf{Berlin}& \textbf{Prag}& \text{(Ber/Pra)}\\
+\textbf{Berlin}& \textbf{Gdansk}& \text{(Ber/Gda)}\\
+\textbf{Berlin}& \textbf{Paris}& \text{(Ber/Par)}\\
+\textbf{Berlin}& \textbf{London}& \text{(Ber/Lon)}\\
+\textbf{Berlin}& \textbf{Stockholm}& \text{(Ber/Sto)}\\
+\textbf{Berlin}& \textbf{Manchester}& \text{(Ber/Man)}\\
+\textbf{Berlin}& \textbf{Rom}& \text{(Ber/Rom)}\\
+\textbf{Berlin}& \textbf{Valencia}& \text{(Ber/Val)}\\
+\textbf{Berlin}& \textbf{Bari}& \text{(Ber/Bar)}\\
+\textbf{Berlin}& \textbf{Seinäjoki}& \text{(Ber/Sei)}\\
+\textbf{Berlin}& \textbf{Bukarest}& \text{(Ber/Buk)}\\
+
+\textbf{Mal/Göt}&  8,20&   19&  153\\
+\textbf{Göt/Sto}& 25,80&   37&  211\\
+\textbf{Ume/Göt}& 20,40&   45&  705\\
+\textbf{Göt/Ume}& 30,00&   65&  705\\
+\textbf{Ber/Ber}& 26,70&   72&  697\\
+\textbf{Ber/Pra}& 45,20&  130& 1557\\
+\textbf{Ber/Gda}& 34,70&  131& 1557\\
+\textbf{Ber/Par}& 30,90&  113& 1063\\
+\textbf{Ber/Lon}& 29,40&   80&  728\\
+\textbf{Ber/Sto}& 31,80&  119& 1246\\
+\textbf{Ber/Man}&  8,00&    1&    0\\
+\textbf{Ber/Rom}& 36,10&  110& 1039\\
+\textbf{Ber/Val}& 19,10&   35&  477\\
+\textbf{Ber/Bar}& 17,50&   37&  497\\
+\textbf{Ber/Sei}& 14,90&   29&  454\\
+\textbf{Ber/Buk}& 16,30&   10&  259\\
