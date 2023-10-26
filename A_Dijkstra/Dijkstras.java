@@ -1,38 +1,92 @@
+import java.util.ArrayList;
+import java.util.PriorityQueue;
+
 public class Dijkstras {
-    public static void main(String[] arg) {
-        Dijkstras_Map map = new Dijkstras_Map("A_Dijksta/europe.csv");
-        String[][] route = {
-            {"Malmö", "Göteborg"},
-            {"Göteborg", "Stockholm"},
-            {"Malmö", "Stockholm"},
-            {"Stockholm", "Sundsvall"},
-            {"Stockholm", "Umeå"},
-            {"Göteborg", "Sundsvall"},
-            {"Sundsvall", "Umeå"},
-            {"Umeå", "Göteborg"},
-            {"Göteborg", "Umeå"}
-        };
-        Integer[] distance = new Integer[9];
+    private Path[] done;
+    private PriorityQueue<Path> queue;
+    private Dijkstras_Map map;
 
-		System.out.printf("those: # sort through an array of length n, time in ms\n");
-		System.out.printf("%25s|%25s|%25s|%25s|%25s|%25s|%25s|%25s|%25s|\n", "Malmö-Göte", "Göte-Sthm", "Malmö-Sthm", "Sthm-Sunds", "Sthm-Umeå", "Göte-Sunds", "Sunds-Umeå", "Umeå-Göte", "Göte-Umeå");
-        System.gc();
+    public class Path implements Comparable<Path>{
+        private Dijkstras_City city;
+        private Dijkstras_City previous;
+        private Integer distance;
 
-        for (int i = 0; i < route.length; i++) {
-            long t0 = System.nanoTime();
-            distance[i] = Dijkstras_Path.dijkstrasSearch(map.lookup(route[i][0]), map.lookup(route[i][1]));
-            double t = (System.nanoTime() - t0);
-            System.out.printf("%25.3f|", (t/1000));
-            System.gc();
+        public Path(Dijkstras_City city) {
+            this.city = city;
+            this.previous = null;
+            this.distance = 0;
         }
-        System.out.println();
-        for(Integer dis : distance) {
-            if (dis == null) {
-                System.out.printf("%25s|", "null");
+
+        public Path(Dijkstras_City city, Dijkstras_City previous, Integer distance) {
+            this.city = city;
+            this.previous = previous;
+            this.distance = distance;
+        }
+
+        @Override
+        public int compareTo(Path path) {
+            if (this.distance == path.distance) {
+                return 0;
+            } else if (this.distance > path.distance) {
+                return 1;
             } else {
-                System.out.printf("%25d|", dis);
-            } 
+                return -1;
+            }
         }
-        System.out.println();
+    }
+
+    public Dijkstras(Dijkstras_Map map) {
+        done = new Path[Dijkstras_Map.size()];
+        queue = new PriorityQueue<Path>();
+    }
+
+    public Integer distance(Dijkstras_City city) {
+        if (city != null && done[city.id] != null) {
+            return done[city.id].distance;
+        } else {
+            return null;
+        }
+    }
+
+    public Integer cities() {
+        Integer n = 0;
+        for (int i = 0; i < done.length; i++) {
+            if (done[i] != null) {
+                n++;
+            }
+        }
+        return n;
+    }
+
+    public Dijkstras_City from(Dijkstras_City city) {
+        return done[city.id].previous;
+    }
+
+    public void search(Dijkstras_City from, Dijkstras_City destination) {
+        Path ex = new Path(from);
+        queue.add(ex);
+        shortest(destination);
+    }
+
+    public void shortest(Dijkstras_City destination) {
+        while (!queue.isEmpty()) {
+            Path entr = queue.remove();
+            Dijkstras_City city = entr.city;
+
+            if (done[city.id] == null) {
+                done[city.id] = entr;
+                if (city == destination) {
+                    break;
+                }
+                Integer sofar = entr.distance;
+                for(Dijkstras_Connection conn : city.neighbors) {
+                    Dijkstras_City to = conn.city;
+                    if (done[to.id] == null) {
+                        Path ex = new Path(to, city, sofar+conn.distance);
+                        queue.add(ex);
+                    }
+                }
+            }
+        }
     }
 }

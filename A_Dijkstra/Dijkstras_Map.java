@@ -3,6 +3,7 @@ import java.io.FileReader;
 
 public class Dijkstras_Map {
     private Dijkstras_City[] cities;
+    private Integer size = 0;
     private final int mod = 1667;
 
     public Dijkstras_Map(String file) {
@@ -35,7 +36,8 @@ public class Dijkstras_Map {
         int indx = hash(name);
         while (true) {
             if (cities[indx] == null) {
-                Dijkstras_City city = new Dijkstras_City(name);
+                Dijkstras_City city = new Dijkstras_City(name, size);
+                size++;
                 cities[indx] = city;
                 return city;
             }
