@@ -8,23 +8,23 @@ public class Dijkstras_Benchmark {
             {"Göteborg", "Stockholm"},
             {"Umeå", "Göteborg"},
             {"Göteborg", "Umeå"},
-            {"Berlin", "Stockholm"},
-            {"Berlin", "Seinäjoki"},
-            {"Berlin", "Bukarest"},
-            {"Berlin", "Valencia"},
-            {"Berlin", "Manchester"},
-            {"Berlin", "Bari"},
             {"Berlin", "Berlin"},
-            {"Berlin", "Rom"},
+            {"Berlin", "Prag"},
+            {"Berlin", "Gdansk"},
             {"Berlin", "Paris"},
             {"Berlin", "London"},
-            {"Berlin", "Gdansk"},
-            {"Berlin", "Prag"}
+            {"Berlin", "Stockholm"},
+            {"Berlin", "Manchester"},
+            {"Berlin", "Rom"},
+            {"Berlin", "Valencia"},
+            {"Berlin", "Bari"},
+            {"Berlin", "Seinäjoki"},
+            {"Berlin", "Bukarest"}
         };
 
 		System.out.printf("those: # sort through an array of length n, time in ms\n");
         System.gc();
-        for (int n = 0; n < 10; n++) {
+        for (int n = 0; n < 1000; n++) {
             for (int i = 0; i < route.length; i++) {
                 Dijkstras dijkstras = new Dijkstras(map);
                 dijkstras.search(map.lookup(route[i][0]), map.lookup(route[i][1]));
